@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import type { RefObject } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Group, Matrix4, Quaternion, Vector3 } from 'three'
@@ -20,6 +20,7 @@ import { journeyPlanets } from '../data/planets'
 import type { Planet } from '../data/planets'
 import type { HotspotButtons } from './PlanetHotspots'
 import { createStarField } from './starField'
+import { applyPointerLook, pointerTarget, settlePointerLook } from '../journey/pointerLook'
 
 type JourneyProps = {
   progress: RefObject<{ target: number; current: number }>
@@ -43,6 +44,21 @@ export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
   const starField = useRef<Points>(null)
   const starMaterial = useRef<PointsMaterial>(null)
   const launch = useRef({ current: 0 })
+  const pointerLook = useMemo(() => ({ current: { x: 0, y: 0 }, target: { x: 0, y: 0 } }), [])
+  useEffect(() => {
+    const move = (event: PointerEvent) =>
+      pointerTarget(event.clientX, event.clientY, window.innerWidth, window.innerHeight, pointerLook.target)
+    const center = () => Object.assign(pointerLook.target, { x: 0, y: 0 })
+    const leave = (event: PointerEvent) => { if (!event.relatedTarget) center() }
+    window.addEventListener('pointermove', move, { passive: true })
+    window.addEventListener('pointerout', leave)
+    window.addEventListener('blur', center)
+    return () => {
+      window.removeEventListener('pointermove', move)
+      window.removeEventListener('pointerout', leave)
+      window.removeEventListener('blur', center)
+    }
+  }, [pointerLook])
   const scratch = useMemo(() => ({
     position: new Vector3(), tangent: new Vector3(), up: new Vector3(0, 1, 0),
     cameraPosition: new Vector3(), lookAt: new Vector3(),
@@ -67,6 +83,10 @@ export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
       sampleJourneyCamera(state.current, scratch.position, scratch.tangent, scratch.cameraPosition, scratch.lookAt)
       camera.position.copy(scratch.cameraPosition)
       camera.lookAt(scratch.lookAt)
+      // The lean eases only while travelling, so exploration returns to the
+      // exact saved pose and then follows the pointer again.
+      settlePointerLook(pointerLook.current, pointerLook.target, delta)
+      applyPointerLook(camera, pointerLook.current)
     } else {
       if (explore.phase === 'exploring' && explore.focus) {
         const focus = explore.focus
@@ -126,6 +146,7 @@ export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
     if (import.meta.env.DEV) {
       scene.userData.journeyProgress = state
       scene.userData.exploreState = explore
+      scene.userData.pointerLook = pointerLook
     }
   }, -2)
 

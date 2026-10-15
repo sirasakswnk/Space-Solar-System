@@ -88,6 +88,7 @@ export default function App() {
                 axisVisible: scene.getObjectByName('uranus-axis')?.visible,
                 routeComparisonVisible: scene.getObjectByName('neptune-route-comparison')?.visible,
                 overview: scene.userData.overview,
+                pointerLook: scene.userData.pointerLook ? structuredClone(scene.userData.pointerLook) : null,
                 camera: camera.position.toArray(),
                 cameraQuaternion: camera.quaternion.toArray(),
                 explore: scene.userData.exploreState ? {

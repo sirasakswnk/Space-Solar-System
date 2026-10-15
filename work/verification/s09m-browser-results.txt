@@ -1,0 +1,21 @@
+{
+ "initialCentered": true,
+ "leanTarget": {
+  "x": 0.9984375000000001,
+  "y": 1
+ },
+ "positionUnchanged": true,
+ "leanAngle": 0.036016104596358484,
+ "leanWithinLimit": true,
+ "noDriftWhenStopped": true,
+ "reverseSamePose": true,
+ "leaveRecentres": true,
+ "frozenDuringExplore": true,
+ "returnContinuity": 5.16191365590357e-8,
+ "returnPositionExact": true,
+ "focusAfterExit": "explore-planet",
+ "restoresPreOpenPose": true,
+ "overviewLabels": true,
+ "padAfterReplayScroll": true,
+ "errors": []
+}
