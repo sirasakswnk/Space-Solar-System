@@ -1,0 +1,372 @@
+﻿{
+  "checks": [
+    "all-seven-stops-isolate-destination-full-opacity-and-exact-reverse-pose-pause",
+    "venus-cloud-rim-and-saturn-body-three-ring-bands-share-partial-fade-in-both-directions",
+    "venus-atmosphere-saturn-rings-exploration-full-visibility-and-exact-pose-scroll-focus-restoration",
+    "overview-fade-all-eight-destinations-jump-and-replay-reset"
+  ],
+  "fades": [
+    {
+      "camera": [
+        -1.5558640370290604,
+        13.417765438518838,
+        -62.50141317210651
+      ],
+      "id": "venus",
+      "opacity": 0.5484127203387469,
+      "p": 0.25
+    },
+    {
+      "camera": [
+        -7.469475678979508,
+        14.510174773673498,
+        -78.8305640118245
+      ],
+      "id": "venus",
+      "opacity": 0.6178008824161225,
+      "p": 0.315
+    },
+    {
+      "camera": [
+        15.821577695581944,
+        21.771725129643993,
+        -201.8273523225936
+      ],
+      "id": "saturn",
+      "opacity": 0.4648878825221592,
+      "p": 0.61
+    },
+    {
+      "camera": [
+        37.45352542276142,
+        29.28476500978711,
+        -221.41115168011777
+      ],
+      "id": "saturn",
+      "opacity": 0.830735135703734,
+      "p": 0.685
+    }
+  ],
+  "passed": true,
+  "stopSamples": [
+    {
+      "camera": [
+        5.999999908827212,
+        12.000000030390932,
+        -36.000000577427706
+      ],
+      "p": 0.17766666666666667,
+      "visibility": [
+        {
+          "id": "mercury",
+          "opacity": 1,
+          "visible": true
+        },
+        {
+          "id": "venus",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "mars",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "jupiter",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "saturn",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "uranus",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "neptune",
+          "opacity": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "camera": [
+        -11.99999999999998,
+        13.000000000000004,
+        -71.00000029160941
+      ],
+      "p": 0.28820833333333334,
+      "visibility": [
+        {
+          "id": "mercury",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "venus",
+          "opacity": 1,
+          "visible": true
+        },
+        {
+          "id": "mars",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "jupiter",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "saturn",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "uranus",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "neptune",
+          "opacity": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "camera": [
+        23.99999999999992,
+        14.000000000000004,
+        -111.99999891889152
+      ],
+      "p": 0.39479166666666665,
+      "visibility": [
+        {
+          "id": "mercury",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "venus",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "mars",
+          "opacity": 1,
+          "visible": true
+        },
+        {
+          "id": "jupiter",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "saturn",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "uranus",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "neptune",
+          "opacity": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "camera": [
+        -11.999999999995486,
+        15.00000000000056,
+        -163.0000036781929
+      ],
+      "p": 0.5264166666666666,
+      "visibility": [
+        {
+          "id": "mercury",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "venus",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "mars",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "jupiter",
+          "opacity": 1,
+          "visible": true
+        },
+        {
+          "id": "saturn",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "uranus",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "neptune",
+          "opacity": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "camera": [
+        32,
+        30,
+        -212
+      ],
+      "p": 0.658,
+      "visibility": [
+        {
+          "id": "mercury",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "venus",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "mars",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "jupiter",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "saturn",
+          "opacity": 1,
+          "visible": true
+        },
+        {
+          "id": "uranus",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "neptune",
+          "opacity": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "camera": [
+        -12,
+        17,
+        -291
+      ],
+      "p": 0.799,
+      "visibility": [
+        {
+          "id": "mercury",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "venus",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "mars",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "jupiter",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "saturn",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "uranus",
+          "opacity": 1,
+          "visible": true
+        },
+        {
+          "id": "neptune",
+          "opacity": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "camera": [
+        23.961535309504832,
+        18.001373738946256,
+        -361.790665875889
+      ],
+      "p": 0.93,
+      "visibility": [
+        {
+          "id": "mercury",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "venus",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "mars",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "jupiter",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "saturn",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "uranus",
+          "opacity": 0,
+          "visible": false
+        },
+        {
+          "id": "neptune",
+          "opacity": 1,
+          "visible": true
+        }
+      ]
+    }
+  ],
+  "viewport": [
+    1280,
+    720
+  ]
+}

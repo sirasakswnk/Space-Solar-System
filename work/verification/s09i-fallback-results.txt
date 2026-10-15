@@ -1,0 +1,1 @@
+﻿"{\"passed\":true,\"checks\":[\"aborted-map-plain-blue-sphere\",\"fallback-eight-stop-route-and-close-view\",\"fallback-return-restores-pose-scroll-focus\"],\"neptune\":{\"texture\":\"fallback\",\"width\":0,\"height\":0}}"

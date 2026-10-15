@@ -1,0 +1,26 @@
+﻿[debug] [vite] connecting...
+[debug] [vite] connected.
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[warning] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[debug] [vite] hot updated: /src/App.tsx
+[debug] [vite] hot updated: /src/scene/JourneyScene.tsx
+[debug] [vite] hot updated: /src/ExplorePanel.tsx
+[debug] [vite] hot updated: /src/scene/PlanetHotspots.tsx
+[debug] [vite] hot updated: /src/scene/PlanetScene.tsx
+[debug] [vite] hot updated: /src/scene/NeptuneRoute.tsx
+[debug] [vite] hot updated: /src/scene/OverviewScene.tsx
+[debug] [vite] hot updated: /src/scene/EarthScene.tsx
+[debug] [vite] hot updated: /src/DestinationControls.tsx
+[debug] [vite] hot updated: /src/App.tsx
+[debug] [vite] hot updated: /src/scene/JourneyScene.tsx
+[debug] [vite] hot updated: /src/ExplorePanel.tsx
+[debug] [vite] hot updated: /src/scene/PlanetHotspots.tsx
+[debug] [vite] hot updated: /src/scene/PlanetScene.tsx
+[debug] [vite] hot updated: /src/scene/NeptuneRoute.tsx
+[debug] [vite] hot updated: /src/scene/OverviewScene.tsx
+[debug] [vite] hot updated: /src/scene/EarthScene.tsx
+[debug] [vite] hot updated: /src/DestinationControls.tsx
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[warning] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.

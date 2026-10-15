@@ -1,0 +1,36 @@
+﻿{
+  "focus": "explore-planet",
+  "passed": true,
+  "phase": "travel",
+  "planets": [
+    {
+      "id": "mercury",
+      "visible": false
+    },
+    {
+      "id": "venus",
+      "visible": false
+    },
+    {
+      "id": "mars",
+      "visible": false
+    },
+    {
+      "id": "jupiter",
+      "visible": false
+    },
+    {
+      "id": "saturn",
+      "visible": true
+    },
+    {
+      "id": "uranus",
+      "visible": false
+    },
+    {
+      "id": "neptune",
+      "visible": false
+    }
+  ],
+  "scrollY": 15792
+}

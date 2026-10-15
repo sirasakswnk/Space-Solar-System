@@ -1,0 +1,155 @@
+﻿{
+  "error": "Error: Replay launch visibility",
+  "passed": false,
+  "snapshot": {
+    "axisVisible": false,
+    "camera": [
+      260,
+      350,
+      -260
+    ],
+    "cameraQuaternion": [
+      -0.31326901076758407,
+      0.6339262787522688,
+      0.31326901076758407,
+      0.6339262787522689
+    ],
+    "cloudHighlight": false,
+    "craterHighlight": false,
+    "current": 0,
+    "earth": {
+      "cloudRotation": 0.15000000000000002,
+      "cloudsVisible": true,
+      "rotation": [
+        0.65,
+        1.12,
+        0.35
+      ],
+      "textures": {
+        "clouds": "loaded",
+        "surface": "loaded"
+      }
+    },
+    "engine": {
+      "engine": 0.25,
+      "exhaustVisible": false,
+      "plume": 0
+    },
+    "explore": {
+      "focusing": false,
+      "orbit": {
+        "distance": 8,
+        "pitch": 0.2,
+        "yaw": 0.55
+      },
+      "pendingDestination": null,
+      "phase": "travel",
+      "planet": "mercury",
+      "replayCount": 1,
+      "selectedHotspot": null
+    },
+    "jupiter": {
+      "height": 1024,
+      "texture": "loaded",
+      "width": 2048
+    },
+    "jupiterCloudHighlight": false,
+    "launch": {
+      "armExtension": 0.25,
+      "cloudOpacity": 0,
+      "sky": "080e1b",
+      "smokeOpacity": 0,
+      "smokeVisible": false
+    },
+    "mars": {
+      "height": 1024,
+      "texture": "loaded",
+      "width": 2048
+    },
+    "mercury": {
+      "height": 1024,
+      "texture": "loaded",
+      "width": 2048
+    },
+    "neptune": {
+      "height": 1024,
+      "texture": "loaded",
+      "width": 2048
+    },
+    "neptuneAtmosphereHighlight": false,
+    "overview": {
+      "blend": 1,
+      "visible": true
+    },
+    "planets": [
+      {
+        "id": "mercury",
+        "visible": true
+      },
+      {
+        "id": "venus",
+        "visible": true
+      },
+      {
+        "id": "mars",
+        "visible": true
+      },
+      {
+        "id": "jupiter",
+        "visible": true
+      },
+      {
+        "id": "saturn",
+        "visible": true
+      },
+      {
+        "id": "uranus",
+        "visible": true
+      },
+      {
+        "id": "neptune",
+        "visible": true
+      }
+    ],
+    "polarHighlight": false,
+    "routeComparisonVisible": false,
+    "saturn": {
+      "height": 1024,
+      "texture": "loaded",
+      "width": 2048
+    },
+    "saturnBodyHighlight": false,
+    "ship": [
+      21,
+      15,
+      -370
+    ],
+    "shipAppearance": {
+      "parts": 18,
+      "radius": 0.6824489476333849
+    },
+    "shipQuaternion": [
+      -0.7071068087610632,
+      0,
+      -1.5442674021302691e-6,
+      0.7071067536103445
+    ],
+    "stormHighlight": false,
+    "target": 0,
+    "terrainHighlight": false,
+    "uranus": {
+      "height": 1024,
+      "texture": "loaded",
+      "width": 2048
+    },
+    "uranusAtmosphereHighlight": false,
+    "venus": {
+      "cloudOpacity": 1,
+      "height": 1024,
+      "rimStrength": 0.18,
+      "rimVisibility": 1,
+      "texture": "loaded",
+      "width": 2048
+    }
+  }
+}

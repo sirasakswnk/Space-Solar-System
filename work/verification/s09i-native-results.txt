@@ -1,0 +1,1 @@
+﻿"{\"phase\":\"travel\",\"scrollY\":22320,\"focus\":\"explore-planet\",\"route\":false,\"atmosphere\":false}"

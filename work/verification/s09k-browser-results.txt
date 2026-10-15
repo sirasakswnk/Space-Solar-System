@@ -1,0 +1,175 @@
+﻿{
+  "checks": [
+    "three-local-mipped-radial-rgba-maps-preserve-band-envelope-gap-tilt-and-double-sided-materials",
+    "ten-forward-reverse-poses-pause-and-identical-body-ring-fades-with-stable-resources",
+    "rings-body-rapid-selection-safe-underside-min-zoom-reset-and-exact-exit-restoration",
+    "overview-eight-stops-ring-maps-return-to-saturn-and-rendered-replay-reset"
+  ],
+  "passed": true,
+  "poseSamples": [
+    {
+      "camera": [
+        -11.999999999995486,
+        15.00000000000056,
+        -163.0000036781929
+      ],
+      "p": 0.5264166666666666,
+      "ringOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "camera": [
+        3.998387655157062,
+        16.99979845689463,
+        -193.56679806112297
+      ],
+      "p": 0.59,
+      "ringOpacities": [
+        0.004267719965989375,
+        0.008156087046113028,
+        0.006638675502650138
+      ]
+    },
+    {
+      "camera": [
+        15.821577695581944,
+        21.771725129643993,
+        -201.8273523225936
+      ],
+      "p": 0.61,
+      "ringOpacities": [
+        0.2091995471349717,
+        0.39980357896905694,
+        0.3254215177655114
+      ]
+    },
+    {
+      "camera": [
+        30.68723683263377,
+        30.109396930613855,
+        -206.02030580474417
+      ],
+      "p": 0.635,
+      "ringOpacities": [
+        0.45,
+        0.86,
+        0.7
+      ]
+    },
+    {
+      "camera": [
+        32,
+        30,
+        -212
+      ],
+      "p": 0.658,
+      "ringOpacities": [
+        0.45,
+        0.86,
+        0.7
+      ]
+    },
+    {
+      "camera": [
+        37.45352542276142,
+        29.28476500978711,
+        -221.41115168011777
+      ],
+      "p": 0.685,
+      "ringOpacities": [
+        0.3738308110666803,
+        0.7144322167052113,
+        0.5815145949926138
+      ]
+    },
+    {
+      "camera": [
+        42.42875153436816,
+        24.987347638870713,
+        -236.03619095140928
+      ],
+      "p": 0.7,
+      "ringOpacities": [
+        0.18114022915598432,
+        0.34617910460921447,
+        0.28177368979819784
+      ]
+    },
+    {
+      "camera": [
+        -12,
+        17,
+        -291
+      ],
+      "p": 0.799,
+      "ringOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "camera": [
+        198.8148148148148,
+        263.9259259259259,
+        -286.7037037037037
+      ],
+      "p": 0.98,
+      "ringOpacities": [
+        0.225,
+        0.43,
+        0.35
+      ]
+    },
+    {
+      "camera": [
+        260,
+        350,
+        -260
+      ],
+      "p": 1,
+      "ringOpacities": [
+        0.45,
+        0.86,
+        0.7
+      ]
+    }
+  ],
+  "ringMaps": [
+    {
+      "bytes": 4096,
+      "colorSpace": "srgb",
+      "mips": true,
+      "size": [
+        1024,
+        1
+      ]
+    },
+    {
+      "bytes": 4096,
+      "colorSpace": "srgb",
+      "mips": true,
+      "size": [
+        1024,
+        1
+      ]
+    },
+    {
+      "bytes": 4096,
+      "colorSpace": "srgb",
+      "mips": true,
+      "size": [
+        1024,
+        1
+      ]
+    }
+  ],
+  "underside": -12.858623952030491,
+  "viewport": [
+    1280,
+    720
+  ]
+}

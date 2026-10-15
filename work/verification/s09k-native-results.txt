@@ -1,0 +1,7 @@
+﻿{
+  "focus": "explore-planet",
+  "passed": true,
+  "phase": "travel",
+  "scrollY": 15792,
+  "selection": null
+}

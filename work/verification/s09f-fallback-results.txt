@@ -1,0 +1,1 @@
+﻿"{\"passed\":true,\"checks\":[\"aborted-map-plain-color-sphere\",\"fallback-both-hotspots-and-exclusive-outlines\",\"fallback-return-restores-pose-scroll-focus\"],\"jupiter\":{\"texture\":\"fallback\",\"width\":0,\"height\":0}}"
