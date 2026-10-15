@@ -21,6 +21,7 @@ import type { Planet } from '../data/planets'
 import type { HotspotButtons } from './PlanetHotspots'
 import { createStarField } from './starField'
 import { applyPointerLook, pointerTarget, settlePointerLook } from '../journey/pointerLook'
+import { sampleBank } from '../journey/bank'
 
 type JourneyProps = {
   progress: RefObject<{ target: number; current: number }>
@@ -62,7 +63,7 @@ export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
   const scratch = useMemo(() => ({
     position: new Vector3(), tangent: new Vector3(), up: new Vector3(0, 1, 0),
     cameraPosition: new Vector3(), lookAt: new Vector3(),
-    rotationMatrix: new Matrix4(), orbitQuaternion: new Quaternion(),
+    rotationMatrix: new Matrix4(), orbitQuaternion: new Quaternion(), bankQuaternion: new Quaternion(),
     planetCenter: new Vector3(),
   }), [])
   const stars = useMemo(() => createStarField(), [])
@@ -77,6 +78,7 @@ export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
       ship.current.visible = explore.phase === 'travel'
       ship.current.position.copy(scratch.position)
       ship.current.quaternion.setFromUnitVectors(scratch.up, scratch.tangent)
+        .premultiply(scratch.bankQuaternion.setFromAxisAngle(scratch.tangent, sampleBank(state.current)))
     }
     // Only this rig writes to the camera. Reverse uses the same sampled pose.
     if (explore.phase === 'travel') {

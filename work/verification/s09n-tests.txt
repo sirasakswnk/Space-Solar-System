@@ -1,0 +1,339 @@
+
+> beyond@0.0.0 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: launch stays upright and every stop is nearly level
+ok 1 - launch stays upright and every stop is nearly level
+  ---
+  duration_ms: 10.560756
+  type: 'test'
+  ...
+# Subtest: bank stays small and changes smoothly along the whole route
+ok 2 - bank stays small and changes smoothly along the whole route
+  ---
+  duration_ms: 81.729409
+  type: 'test'
+  ...
+# Subtest: the top of the ship rolls toward the inside of each turn
+ok 3 - the top of the ship rolls toward the inside of each turn
+  ---
+  duration_ms: 5.210897
+  type: 'test'
+  ...
+# Subtest: repeated zoom and rotation keep exploration outside planet and away from poles
+ok 4 - repeated zoom and rotation keep exploration outside planet and away from poles
+  ---
+  duration_ms: 2.886676
+  type: 'test'
+  ...
+# Subtest: reset orbit restores initial view after rotation and zoom
+ok 5 - reset orbit restores initial view after rotation and zoom
+  ---
+  duration_ms: 1.574035
+  type: 'test'
+  ...
+# Subtest: hotspot focus uses the shorter orbit and keeps a safe radius through repeated selections
+ok 6 - hotspot focus uses the shorter orbit and keeps a safe radius through repeated selections
+  ---
+  duration_ms: 5.319725
+  type: 'test'
+  ...
+# Subtest: orbit helpers respect planet-specific bounds and clamp invalid hotspot focus distances
+ok 7 - orbit helpers respect planet-specific bounds and clamp invalid hotspot focus distances
+  ---
+  duration_ms: 0.224937
+  type: 'test'
+  ...
+# Subtest: entry transition from reachable Mercury travel poses never cuts through planet
+ok 8 - entry transition from reachable Mercury travel poses never cuts through planet
+  ---
+  duration_ms: 17.347817
+  type: 'test'
+  ...
+# Subtest: exit transition from opposite orbit views stays outside planet and reaches exact endpoint
+ok 9 - exit transition from opposite orbit views stays outside planet and reaches exact endpoint
+  ---
+  duration_ms: 11.616665
+  type: 'test'
+  ...
+# Subtest: giant exploration stays outside bodies and Saturn rings through extreme zoom and rotation
+ok 10 - giant exploration stays outside bodies and Saturn rings through extreme zoom and rotation
+  ---
+  duration_ms: 6.769923
+  type: 'test'
+  ...
+# Subtest: Saturn ring marker lies on its ring plane while ring and body views remain distinct
+ok 11 - Saturn ring marker lies on its ring plane while ring and body views remain distinct
+  ---
+  duration_ms: 0.352786
+  type: 'test'
+  ...
+# Subtest: route stays outside every planet and ring envelope with continuous camera and heading at joins
+ok 12 - route stays outside every planet and ring envelope with continuous camera and heading at joins
+  ---
+  duration_ms: 88.728112
+  type: 'test'
+  ...
+# Subtest: launch geometry and ignition timing are preserved through the progress mapping
+ok 13 - launch geometry and ignition timing are preserved through the progress mapping
+  ---
+  duration_ms: 1.443429
+  type: 'test'
+  ...
+# Subtest: Saturn approach reveals ring depth and keeps ship and planet center framed
+ok 14 - Saturn approach reveals ring depth and keeps ship and planet center framed
+  ---
+  duration_ms: 7.505982
+  type: 'test'
+  ...
+# Subtest: exploration availability follows all seven stops in both directions without opening in transit
+ok 15 - exploration availability follows all seven stops in both directions without opening in transit
+  ---
+  duration_ms: 2.51196
+  type: 'test'
+  ...
+# Subtest: all reachable entry and far-side exit poses keep safe planet-specific distances
+ok 16 - all reachable entry and far-side exit poses keep safe planet-specific distances
+  ---
+  duration_ms: 47.757192
+  type: 'test'
+  ...
+# Subtest: progress stays bounded for overscroll and invalid input
+ok 17 - progress stays bounded for overscroll and invalid input
+  ---
+  duration_ms: 1.105849
+  type: 'test'
+  ...
+# Subtest: service arm retracts before lift-off and reverses continuously to the starting extension
+ok 18 - service arm retracts before lift-off and reverses continuously to the starting extension
+  ---
+  duration_ms: 0.534252
+  type: 'test'
+  ...
+# Subtest: travel settles exactly after scroll stops, in either direction
+ok 19 - travel settles exactly after scroll stops, in either direction
+  ---
+  duration_ms: 1.02942
+  type: 'test'
+  ...
+# Subtest: path and follow camera remain outside planets, including curved segments
+ok 20 - path and follow camera remain outside planets, including curved segments
+  ---
+  duration_ms: 29.865868
+  type: 'test'
+  ...
+# Subtest: ignition holds ship on pad; launch mapping and effects have no boundary jumps
+ok 21 - ignition holds ship on pad; launch mapping and effects have no boundary jumps
+  ---
+  duration_ms: 0.917587
+  type: 'test'
+  ...
+# Subtest: launch camera is continuous at transitions to follow and wide views
+ok 22 - launch camera is continuous at transitions to follow and wide views
+  ---
+  duration_ms: 5.199875
+  type: 'test'
+  ...
+# Subtest: follow camera keeps ship away from screen edges during launch
+ok 23 - follow camera keeps ship away from screen edges during launch
+  ---
+  duration_ms: 37.876984
+  type: 'test'
+  ...
+# Subtest: Jupiter clouds marker ray hits its inspected image region and stays visible after focus
+ok 24 - Jupiter clouds marker ray hits its inspected image region and stays visible after focus
+  ---
+  duration_ms: 57.101486
+  type: 'test'
+  ...
+# Subtest: Jupiter storm marker ray hits its inspected image region and stays visible after focus
+ok 25 - Jupiter storm marker ray hits its inspected image region and stays visible after focus
+  ---
+  duration_ms: 9.343369
+  type: 'test'
+  ...
+# Subtest: Jupiter selection ellipses follow east–west bands, face outward, and never cut into the cloud shell
+ok 26 - Jupiter selection ellipses follow east–west bands, face outward, and never cut into the cloud shell
+  ---
+  duration_ms: 2.26812
+  type: 'test'
+  ...
+# Subtest: Mars terrain marker ray hits its inspected image region, including the polar UV seam
+ok 27 - Mars terrain marker ray hits its inspected image region, including the polar UV seam
+  ---
+  duration_ms: 38.955713
+  type: 'test'
+  ...
+# Subtest: Mars polar marker ray hits its inspected image region, including the polar UV seam
+ok 28 - Mars polar marker ray hits its inspected image region, including the polar UV seam
+  ---
+  duration_ms: 19.835641
+  type: 'test'
+  ...
+# Subtest: Mars terrain and polar selection bands stay above the body and surround their marker normals
+ok 29 - Mars terrain and polar selection bands stay above the body and surround their marker normals
+  ---
+  duration_ms: 2.591246
+  type: 'test'
+  ...
+# Subtest: Mercury hotspot ray hits the inspected image feature with Three UV and flipped image Y
+ok 30 - Mercury hotspot ray hits the inspected image feature with Three UV and flipped image Y
+  ---
+  duration_ms: 41.887986
+  type: 'test'
+  ...
+# Subtest: selected crater outline follows the sphere without its vertices or triangle centers entering the body
+ok 31 - selected crater outline follows the sphere without its vertices or triangle centers entering the body
+  ---
+  duration_ms: 1.994062
+  type: 'test'
+  ...
+# Subtest: destination pixels land inside each stop, retaining one settling progress controller
+ok 32 - destination pixels land inside each stop, retaining one settling progress controller
+  ---
+  duration_ms: 5.816559
+  type: 'test'
+  ...
+# Subtest: replay clears exploration, transition and pending navigation state and resets progress
+ok 33 - replay clears exploration, transition and pending navigation state and resets progress
+  ---
+  duration_ms: 4.791211
+  type: 'test'
+  ...
+# Subtest: overview pullback is reversible, continuous at the flight end and frames all eight destinations
+ok 34 - overview pullback is reversible, continuous at the flight end and frames all eight destinations
+  ---
+  duration_ms: 10.719488
+  type: 'test'
+  ...
+# Subtest: Neptune atmosphere marker reaches its inspected cloud band with a focus outside the globe
+ok 35 - Neptune atmosphere marker reaches its inspected cloud band with a focus outside the globe
+  ---
+  duration_ms: 56.619963
+  type: 'test'
+  ...
+# Subtest: Neptune atmosphere selection follows its image anchor and stays outside the cloud shell
+ok 36 - Neptune atmosphere selection follows its image anchor and stays outside the cloud shell
+  ---
+  duration_ms: 2.761645
+  type: 'test'
+  ...
+# Subtest: outer planets retain safe zoom distances and Uranus axis is nearly sideways
+ok 37 - outer planets retain safe zoom distances and Uranus axis is nearly sideways
+  ---
+  duration_ms: 9.547824
+  type: 'test'
+  ...
+# Subtest: Neptune comparison contains the traversed route and all eight ordered points outside the planet
+ok 38 - Neptune comparison contains the traversed route and all eight ordered points outside the planet
+  ---
+  duration_ms: 28.260967
+  type: 'test'
+  ...
+# Subtest: only the destination is visible throughout every exploration window
+ok 39 - only the destination is visible throughout every exploration window
+  ---
+  duration_ms: 2.213507
+  type: 'test'
+  ...
+# Subtest: travel fades stay bounded and continuous and reverse restores identical visibility
+ok 40 - travel fades stay bounded and continuous and reverse restores identical visibility
+  ---
+  duration_ms: 52.659148
+  type: 'test'
+  ...
+# Subtest: opening, exploration and closing keep the selected planet and its attachments fully visible
+ok 41 - opening, exploration and closing keep the selected planet and its attachments fully visible
+  ---
+  duration_ms: 0.691196
+  type: 'test'
+  ...
+# Subtest: pointer target maps the window to [-1, 1] and ignores an empty viewport
+ok 42 - pointer target maps the window to [-1, 1] and ignores an empty viewport
+  ---
+  duration_ms: 2.436176
+  type: 'test'
+  ...
+# Subtest: lean eases toward the target, caps long frames and settles exactly
+ok 43 - lean eases toward the target, caps long frames and settles exactly
+  ---
+  duration_ms: 0.554272
+  type: 'test'
+  ...
+# Subtest: lean only rotates the camera within a small angle
+ok 44 - lean only rotates the camera within a small angle
+  ---
+  duration_ms: 1.484979
+  type: 'test'
+  ...
+# Subtest: Saturn body marker reaches its inspected cloud band with a focus outside the whole ring envelope
+ok 45 - Saturn body marker reaches its inspected cloud band with a focus outside the whole ring envelope
+  ---
+  duration_ms: 41.418379
+  type: 'test'
+  ...
+# Subtest: Saturn body selection follows its image anchor and stays outside the cloud shell
+ok 46 - Saturn body selection follows its image anchor and stays outside the cloud shell
+  ---
+  duration_ms: 2.225769
+  type: 'test'
+  ...
+# Subtest: radial ring UVs preserve the original vertices, envelope and open gap
+ok 47 - radial ring UVs preserve the original vertices, envelope and open gap
+  ---
+  duration_ms: 16.727696
+  type: 'test'
+  ...
+# Subtest: local ring maps contain radial detail, translucent grain and soft edges without animation
+ok 48 - local ring maps contain radial detail, translucent grain and soft edges without animation
+  ---
+  duration_ms: 14.662207
+  type: 'test'
+  ...
+# Subtest: star field lies on one sphere inside the camera far plane
+ok 49 - star field lies on one sphere inside the camera far plane
+  ---
+  duration_ms: 5.110269
+  type: 'test'
+  ...
+# Subtest: star field covers every viewing direction and is deterministic
+ok 50 - star field covers every viewing direction and is deterministic
+  ---
+  duration_ms: 3.946548
+  type: 'test'
+  ...
+# Subtest: Uranus atmospheric marker reaches its image region after the globe is tilted with the axis
+ok 51 - Uranus atmospheric marker reaches its image region after the globe is tilted with the axis
+  ---
+  duration_ms: 27.793802
+  type: 'test'
+  ...
+# Subtest: Uranus selection surrounds the tilted atmospheric marker without entering the globe
+ok 52 - Uranus selection surrounds the tilted atmospheric marker without entering the globe
+  ---
+  duration_ms: 1.507664
+  type: 'test'
+  ...
+# Subtest: Venus cloud marker ray reaches its image region using the actual globe UVs
+ok 53 - Venus cloud marker ray reaches its image region using the actual globe UVs
+  ---
+  duration_ms: 19.698139
+  type: 'test'
+  ...
+# Subtest: cloud selection outline stays outside Venus and aligns around the cloud marker
+ok 54 - cloud selection outline stays outside Venus and aligns around the cloud marker
+  ---
+  duration_ms: 1.55763
+  type: 'test'
+  ...
+1..54
+# tests 54
+# suites 0
+# pass 54
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2148.549205
+exit 0
