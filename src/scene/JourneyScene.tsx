@@ -2,7 +2,7 @@ import { useMemo, useRef } from 'react'
 import type { RefObject } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Group, Matrix4, Quaternion, Vector3 } from 'three'
-import type { PointsMaterial } from 'three'
+import type { Points, PointsMaterial } from 'three'
 import {
   launchProgress, getExplorePlanet,
   sampleJourney, sampleJourneyCamera, settleProgress, journeyLabel,
@@ -19,6 +19,7 @@ import OverviewScene from './OverviewScene'
 import { journeyPlanets } from '../data/planets'
 import type { Planet } from '../data/planets'
 import type { HotspotButtons } from './PlanetHotspots'
+import { createStarField } from './starField'
 
 type JourneyProps = {
   progress: RefObject<{ target: number; current: number }>
@@ -39,6 +40,7 @@ type JourneyProps = {
 export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
   exploreButtonRef, hoverRef, explore, changePhase, openExplore, hotspotButtons, overviewRef, mapRef, mapLabels }: JourneyProps) {
   const ship = useRef<Group>(null)
+  const starField = useRef<Points>(null)
   const starMaterial = useRef<PointsMaterial>(null)
   const launch = useRef({ current: 0 })
   const scratch = useMemo(() => ({
@@ -47,16 +49,7 @@ export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
     rotationMatrix: new Matrix4(), orbitQuaternion: new Quaternion(),
     planetCenter: new Vector3(),
   }), [])
-  const stars = useMemo(() => {
-    const positions = new Float32Array(350 * 3)
-    for (let i = 0; i < positions.length; i++) {
-      const random = Math.sin(i * 127.1 + 17) * 43758.5453
-      const fraction = random - Math.floor(random)
-      positions[i] = i % 3 === 0 ? fraction * 140 - 70
-        : i % 3 === 1 ? fraction * 100 - 40 : fraction * 135 - 120
-    }
-    return positions
-  }, [])
+  const stars = useMemo(() => createStarField(), [])
 
   useFrame(({ camera, scene }, delta) => {
     const state = progress.current
@@ -103,6 +96,8 @@ export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
     }
     explore.latestPosition.copy(camera.position)
     explore.latestQuaternion.copy(camera.quaternion)
+    // Stars stay centred on the camera, as if infinitely far, along the whole route.
+    if (starField.current) starField.current.position.copy(camera.position)
     if (starMaterial.current) starMaterial.current.opacity = spaceBlend(launch.current.current)
     if (hoverRef.current && (explore.phase !== 'travel' || !availablePlanet
       || hoverRef.current.textContent !== `${availablePlanet.name} — ${availablePlanet.thaiName}`)) {
@@ -147,11 +142,12 @@ export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
         progress={progress} buttons={hotspotButtons} hoverRef={hoverRef} open={openExplore} />)}
       <NeptuneRoute model={explore} />
       <OverviewScene progress={progress} model={explore} panel={overviewRef} labels={mapRef} elements={mapLabels} />
-      <points>
+      <points ref={starField} name="star-field">
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[stars, 3]} />
         </bufferGeometry>
-        <pointsMaterial ref={starMaterial} color="#becfe4" size={0.13} sizeAttenuation transparent opacity={0} depthWrite={false} />
+        <pointsMaterial ref={starMaterial} color="#becfe4" size={2} sizeAttenuation={false}
+          transparent opacity={0} depthWrite={false} fog={false} />
       </points>
     </>
   )
