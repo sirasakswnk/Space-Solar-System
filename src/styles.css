@@ -14,6 +14,8 @@ p { margin: 0; }
 
 .experience { position: relative; }
 .scene { position: fixed; inset: 0; }
+/* Covers only the 3D scene for reduced-motion cuts; interface layers stay above. */
+.motion-fade { position: fixed; inset: 0; background: #080e1b; opacity: 0; pointer-events: none; }
 .scene::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(to bottom, rgba(8, 14, 27, 0.8), transparent 28%, transparent 72%, rgba(8, 14, 27, 0.85));

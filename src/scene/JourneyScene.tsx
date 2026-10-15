@@ -22,6 +22,8 @@ import type { HotspotButtons } from './PlanetHotspots'
 import { createStarField } from './starField'
 import { applyPointerLook, pointerTarget, settlePointerLook } from '../journey/pointerLook'
 import { sampleBank } from '../journey/bank'
+import { fadeAfter, shouldCut } from '../journey/motion'
+import type { MotionPreference } from '../journey/motion'
 
 type JourneyProps = {
   progress: RefObject<{ target: number; current: number }>
@@ -37,15 +39,17 @@ type JourneyProps = {
   overviewRef: RefObject<HTMLElement | null>
   mapRef: RefObject<HTMLDivElement | null>
   mapLabels: RefObject<Record<string, HTMLElement | null>>
+  motion: MotionPreference
+  fadeRef: RefObject<HTMLDivElement | null>
 }
 
 export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
-  exploreButtonRef, hoverRef, explore, changePhase, openExplore, hotspotButtons, overviewRef, mapRef, mapLabels }: JourneyProps) {
+  exploreButtonRef, hoverRef, explore, changePhase, openExplore, hotspotButtons, overviewRef, mapRef, mapLabels, motion, fadeRef }: JourneyProps) {
   const ship = useRef<Group>(null)
   const starField = useRef<Points>(null)
   const starMaterial = useRef<PointsMaterial>(null)
   const launch = useRef({ current: 0 })
-  const pointerLook = useMemo(() => ({ current: { x: 0, y: 0 }, target: { x: 0, y: 0 } }), [])
+  const pointerLook = useMemo(() => ({ current: { x: 0, y: 0 }, target: { x: 0, y: 0 }, centre: { x: 0, y: 0 } }), [])
   useEffect(() => {
     const move = (event: PointerEvent) =>
       pointerTarget(event.clientX, event.clientY, window.innerWidth, window.innerHeight, pointerLook.target)
@@ -70,6 +74,12 @@ export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
 
   useFrame(({ camera, scene }, delta) => {
     const state = progress.current
+    motion.fade = fadeAfter(motion.fade, delta)
+    // Reduced motion: a long jump (menu, Home/End) cuts and fades in instead of flying.
+    if (explore.phase === 'travel' && shouldCut(motion.reduced, state.current, state.target)) {
+      state.current = state.target
+      motion.fade = 1
+    }
     if (explore.phase === 'travel') state.current = settleProgress(state.current, state.target, delta)
     const availablePlanet = getExplorePlanet(state.current)
     launch.current.current = launchProgress(state.current)
@@ -87,13 +97,13 @@ export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
       camera.lookAt(scratch.lookAt)
       // The lean eases only while travelling, so exploration returns to the
       // exact saved pose and then follows the pointer again.
-      settlePointerLook(pointerLook.current, pointerLook.target, delta)
+      settlePointerLook(pointerLook.current, motion.reduced ? pointerLook.centre : pointerLook.target, delta)
       applyPointerLook(camera, pointerLook.current)
     } else {
       if (explore.phase === 'exploring' && explore.focus) {
         const focus = explore.focus
         focus.elapsed += Math.min(delta, 0.05)
-        const t = Math.min(1, focus.elapsed / 0.45)
+        const t = motion.reduced ? 1 : Math.min(1, focus.elapsed / 0.45)
         sampleFocusOrbit(focus.from, focus.to, t, explore.orbit)
         if (t === 1) explore.focus = null
       }
@@ -105,8 +115,9 @@ export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
         camera.position.copy(scratch.cameraPosition)
         camera.quaternion.copy(scratch.orbitQuaternion)
       } else {
+        if (motion.reduced && explore.elapsed === 0) motion.fade = 1
         explore.elapsed += Math.min(delta, 0.05)
-        const t = Math.min(1, explore.elapsed / 0.45)
+        const t = motion.reduced ? 1 : Math.min(1, explore.elapsed / 0.45)
         const ease = t * t * (3 - 2 * t)
         const returning = explore.phase === 'exiting'
         const destination = returning ? explore.saved!.position : scratch.cameraPosition
@@ -118,6 +129,10 @@ export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
     }
     explore.latestPosition.copy(camera.position)
     explore.latestQuaternion.copy(camera.quaternion)
+    if (fadeRef.current) {
+      const opacity = motion.fade.toFixed(3)
+      if (fadeRef.current.style.opacity !== opacity) fadeRef.current.style.opacity = opacity
+    }
     // Stars stay centred on the camera, as if infinitely far, along the whole route.
     if (starField.current) starField.current.position.copy(camera.position)
     if (starMaterial.current) starMaterial.current.opacity = spaceBlend(launch.current.current)
@@ -149,6 +164,7 @@ export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
       scene.userData.journeyProgress = state
       scene.userData.exploreState = explore
       scene.userData.pointerLook = pointerLook
+      scene.userData.motion = motion
     }
   }, -2)
 

@@ -9,9 +9,14 @@ import type { Planet } from './data/planets'
 import { journeyPlanets } from './data/planets'
 import { journeyScrollLength } from './journey/path'
 import DestinationControls from './DestinationControls'
+import { createMotionPreference } from './journey/motion'
+import useReducedMotion from './journey/useReducedMotion'
 
 export default function App() {
   const [explore] = useState(createExploreState)
+  const [motion] = useState(createMotionPreference)
+  useReducedMotion(motion)
+  const fadeRef = useRef<HTMLDivElement>(null)
   const progress = useJourneyScroll(explore)
   const { phase, changePhase, open, close, selectedHotspot, selectHotspot, resetView, axisVisible, toggleAxis, navigate } = useExploreJourney(explore, progress)
   const titleRef = useRef<HTMLHeadingElement>(null)
@@ -89,6 +94,7 @@ export default function App() {
                 routeComparisonVisible: scene.getObjectByName('neptune-route-comparison')?.visible,
                 overview: scene.userData.overview,
                 pointerLook: scene.userData.pointerLook ? structuredClone(scene.userData.pointerLook) : null,
+                motion: scene.userData.motion ? { ...scene.userData.motion } : null,
                 camera: camera.position.toArray(),
                 cameraQuaternion: camera.quaternion.toArray(),
                 explore: scene.userData.exploreState ? {
@@ -109,9 +115,10 @@ export default function App() {
           <JourneyScene progress={progress} meterRef={meterRef} percentRef={percentRef} labelRef={labelRef}
             exploreButtonRef={exploreButtonRef} hoverRef={hoverRef} explore={explore}
             changePhase={changePhase} openExplore={openExplore} hotspotButtons={hotspotButtons}
-            overviewRef={overviewRef} mapRef={mapRef} mapLabels={mapLabels} />
+            overviewRef={overviewRef} mapRef={mapRef} mapLabels={mapLabels} motion={motion} fadeRef={fadeRef} />
         </Canvas>
       </div>
+      <div ref={fadeRef} className="motion-fade" aria-hidden="true" />
       <div ref={mapRef} className="overview-labels" hidden aria-label="จุดในภาพรวมเส้นทาง">
         <span ref={element => { mapLabels.current.earth = element }}>Earth · เริ่มต้น</span>
         {journeyPlanets.map(planet => <button key={planet.id} type="button" data-map-destination={planet.id}
