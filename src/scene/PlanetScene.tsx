@@ -16,9 +16,10 @@ import SaturnClouds from './SaturnClouds'
 import UranusClouds from './UranusClouds'
 import NeptuneClouds from './NeptuneClouds'
 import type { HotspotButtons } from './PlanetHotspots'
+import type { AssetStatus } from '../journey/assetStatus'
 
-export default function PlanetScene({ planet, model, progress, buttons, hoverRef, open }: {
-  planet: Planet; model: ExploreState; progress: RefObject<{ current: number; target: number }>
+export default function PlanetScene({ planet, model, progress, buttons, hoverRef, open, assets }: {
+  assets: AssetStatus; planet: Planet; model: ExploreState; progress: RefObject<{ current: number; target: number }>
   buttons: HotspotButtons; hoverRef: RefObject<HTMLSpanElement | null>; open: (planet: Planet) => void
 }) {
   const group = useRef<Group>(null)
@@ -50,18 +51,18 @@ export default function PlanetScene({ planet, model, progress, buttons, hoverRef
         if (material.current) material.current.emissiveIntensity = 0
         document.body.style.cursor = ''
       }}>
-    {planet.id === 'venus' ? <VenusClouds planet={planet} material={material} model={model} progress={progress} />
+    {planet.id === 'venus' ? <VenusClouds planet={planet} material={material} model={model} progress={progress} assets={assets} />
       : <mesh position={planet.scene.center} rotation={[0, 0, planet.axisTilt ?? 0]}
         name={['jupiter', 'saturn', 'uranus', 'neptune'].includes(planet.id) ? `${planet.id}-cloud-shell`
         : ['mercury', 'mars'].includes(planet.id) ? `${planet.id}-surface` : undefined}>
       <sphereGeometry args={[planet.scene.radius, ['mars', 'jupiter', 'saturn', 'uranus', 'neptune'].includes(planet.id) ? 64 : 40,
         ['mars', 'jupiter', 'saturn', 'uranus', 'neptune'].includes(planet.id) ? 48 : 32]} />
-      {planet.id === 'mercury' ? <MercurySurface material={material} />
-        : planet.id === 'mars' ? <MarsSurface material={material} />
-        : planet.id === 'jupiter' ? <JupiterClouds material={material} />
-        : planet.id === 'saturn' ? <SaturnClouds material={material} />
-        : planet.id === 'uranus' ? <UranusClouds material={material} />
-        : planet.id === 'neptune' ? <NeptuneClouds material={material} />
+      {planet.id === 'mercury' ? <MercurySurface material={material} assets={assets} />
+        : planet.id === 'mars' ? <MarsSurface material={material} assets={assets} />
+        : planet.id === 'jupiter' ? <JupiterClouds material={material} assets={assets} />
+        : planet.id === 'saturn' ? <SaturnClouds material={material} assets={assets} />
+        : planet.id === 'uranus' ? <UranusClouds material={material} assets={assets} />
+        : planet.id === 'neptune' ? <NeptuneClouds material={material} assets={assets} />
         : <meshStandardMaterial ref={material} color={planet.scene.color} emissive="#4786a8"
           emissiveIntensity={0} roughness={1} transparent opacity={0} />}
     </mesh>}

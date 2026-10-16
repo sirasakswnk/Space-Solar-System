@@ -4,8 +4,12 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { AdditiveBlending, BackSide, Color, Group, Mesh, MeshStandardMaterial,
   RepeatWrapping, ShaderMaterial, SphereGeometry, SRGBColorSpace, TextureLoader } from 'three'
 import { earthCenter, earthRadius } from '../journey/path'
+import type { AssetStatus } from '../journey/assetStatus'
+import { useAssetAttempt } from '../journey/useAssetStatus'
 
-export default function EarthScene({ progress }: { progress: RefObject<{ current: number }> }) {
+export default function EarthScene({ progress, assets }: { progress: RefObject<{ current: number }>; assets: AssetStatus }) {
+  const surfaceAttempt = useAssetAttempt(assets, 'earth-surface')
+  const cloudAttempt = useAssetAttempt(assets, 'earth-clouds')
   const world = useRef<Group>(null)
   const clouds = useRef<Mesh>(null)
   const { scene, gl } = useThree()
@@ -38,11 +42,12 @@ export default function EarthScene({ progress }: { progress: RefObject<{ current
     }),
     status: { surface: 'loading', clouds: 'loading' },
   }), [])
+  // One effect per file, so retrying one does not request the other again.
   useEffect(() => {
     let active = true
-    resources.status.surface = resources.status.clouds = 'loading'
-    const loader = new TextureLoader()
-    const surface = loader.load('/assets/earth/daymap.jpg', texture => {
+    resources.status.surface = 'loading'
+    assets.mark('earth-surface', 'loading')
+    const surface = new TextureLoader().load('/assets/earth/daymap.jpg', texture => {
       if (!active) { texture.dispose(); return }
       texture.colorSpace = SRGBColorSpace
       texture.wrapS = RepeatWrapping
@@ -51,8 +56,19 @@ export default function EarthScene({ progress }: { progress: RefObject<{ current
       resources.surface.color.set('#ffffff')
       resources.surface.needsUpdate = true
       resources.status.surface = 'loaded'
-    }, undefined, () => { if (active) resources.status.surface = 'fallback' })
-    const cloudMap = loader.load('/assets/earth/clouds.jpg', texture => {
+      assets.mark('earth-surface', 'loaded')
+    }, undefined, () => { if (active) { resources.status.surface = 'fallback'; assets.mark('earth-surface', 'failed') } })
+    return () => {
+      active = false
+      surface.dispose(); resources.surface.map = null
+      resources.surface.color.set('#236490'); resources.surface.needsUpdate = true
+    }
+  }, [resources, gl, assets, surfaceAttempt])
+  useEffect(() => {
+    let active = true
+    resources.status.clouds = 'loading'
+    assets.mark('earth-clouds', 'loading')
+    const cloudMap = new TextureLoader().load('/assets/earth/clouds.jpg', texture => {
       if (!active) { texture.dispose(); return }
       // Grayscale mask is non-color data; MeshStandardMaterial samples green.
       texture.wrapS = RepeatWrapping
@@ -60,15 +76,13 @@ export default function EarthScene({ progress }: { progress: RefObject<{ current
       resources.clouds.alphaMap = texture
       resources.clouds.needsUpdate = true
       resources.status.clouds = 'loaded'
-    }, undefined, () => { if (active) resources.status.clouds = 'fallback' })
+      assets.mark('earth-clouds', 'loaded')
+    }, undefined, () => { if (active) { resources.status.clouds = 'fallback'; assets.mark('earth-clouds', 'failed') } })
     return () => {
       active = false
-      surface.dispose(); cloudMap.dispose()
-      resources.surface.map = null; resources.clouds.alphaMap = null
-      resources.surface.color.set('#236490')
-      resources.surface.needsUpdate = true; resources.clouds.needsUpdate = true
+      cloudMap.dispose(); resources.clouds.alphaMap = null; resources.clouds.needsUpdate = true
     }
-  }, [resources, scene, gl])
+  }, [resources, gl, assets, cloudAttempt])
   useEffect(() => () => {
     resources.geometry.dispose(); resources.surface.dispose()
     resources.clouds.dispose(); resources.atmosphere.dispose()

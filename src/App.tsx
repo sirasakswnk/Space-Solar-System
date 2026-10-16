@@ -14,10 +14,13 @@ import useReducedMotion from './journey/useReducedMotion'
 import { qualityDpr } from './journey/quality'
 import type { Quality } from './journey/quality'
 import SettingsControls from './SettingsControls'
+import { createAssetStatus } from './journey/assetStatus'
+import AssetStatusLine from './AssetStatusLine'
 
 export default function App() {
   const [explore] = useState(createExploreState)
   const [motion] = useState(createMotionPreference)
+  const [assets] = useState(createAssetStatus)
   const { reduced, setReduced } = useReducedMotion(motion)
   // Settings live outside the journey state, so starting over keeps them.
   const [quality, setQuality] = useState<Quality>('standard')
@@ -71,6 +74,7 @@ export default function App() {
           camera={{ position: [3, 3, 7], fov: 50, near: 0.1, far: 1000 }}
           dpr={qualityDpr(quality, window.devicePixelRatio)}
           onCreated={({ gl, scene, camera }) => {
+            if (import.meta.env.DEV) scene.userData.assetStates = assets.states
             // Read-only development diagnostics for checking the applied 3D pose.
             if (import.meta.env.DEV) Object.defineProperty(gl.domElement, 'journeySnapshot', {
               configurable: true,
@@ -105,6 +109,7 @@ export default function App() {
                 pointerLook: scene.userData.pointerLook ? structuredClone(scene.userData.pointerLook) : null,
                 motion: scene.userData.motion ? { ...scene.userData.motion } : null,
                 pixelRatio: gl.getPixelRatio(),
+                assets: { ...scene.userData.assetStates },
                 camera: camera.position.toArray(),
                 cameraQuaternion: camera.quaternion.toArray(),
                 explore: scene.userData.exploreState ? {
@@ -125,7 +130,7 @@ export default function App() {
           <JourneyScene progress={progress} meterRef={meterRef} percentRef={percentRef} labelRef={labelRef}
             exploreButtonRef={exploreButtonRef} hoverRef={hoverRef} explore={explore}
             changePhase={changePhase} openExplore={openExplore} hotspotButtons={hotspotButtons}
-            overviewRef={overviewRef} mapRef={mapRef} mapLabels={mapLabels} motion={motion} fadeRef={fadeRef} />
+            overviewRef={overviewRef} mapRef={mapRef} mapLabels={mapLabels} motion={motion} fadeRef={fadeRef} assets={assets} />
         </Canvas>
       </div>
       <div ref={fadeRef} className="motion-fade" aria-hidden="true" />
@@ -158,6 +163,7 @@ export default function App() {
         <p>Earth → {journeyPlanets.map(planet => planet.name).join(' → ')}</p>
         <label htmlFor="journey-progress">ความคืบหน้า <span ref={percentRef}>0%</span></label>
         <progress ref={meterRef} id="journey-progress" max={100} value={0} />
+        <AssetStatusLine assets={assets} />
       </aside>
       <ExplorePanel model={explore} phase={phase} close={close} selectedHotspot={selectedHotspot}
         selectHotspot={selectHotspot} resetView={resetView} hotspotButtons={hotspotButtons}

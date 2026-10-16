@@ -24,6 +24,7 @@ import { applyPointerLook, pointerTarget, settlePointerLook } from '../journey/p
 import { sampleBank } from '../journey/bank'
 import { fadeAfter, shouldCut } from '../journey/motion'
 import type { MotionPreference } from '../journey/motion'
+import type { AssetStatus } from '../journey/assetStatus'
 
 type JourneyProps = {
   progress: RefObject<{ target: number; current: number }>
@@ -41,10 +42,11 @@ type JourneyProps = {
   mapLabels: RefObject<Record<string, HTMLElement | null>>
   motion: MotionPreference
   fadeRef: RefObject<HTMLDivElement | null>
+  assets: AssetStatus
 }
 
 export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
-  exploreButtonRef, hoverRef, explore, changePhase, openExplore, hotspotButtons, overviewRef, mapRef, mapLabels, motion, fadeRef }: JourneyProps) {
+  exploreButtonRef, hoverRef, explore, changePhase, openExplore, hotspotButtons, overviewRef, mapRef, mapLabels, motion, fadeRef, assets }: JourneyProps) {
   const ship = useRef<Group>(null)
   const starField = useRef<Points>(null)
   const starMaterial = useRef<PointsMaterial>(null)
@@ -176,9 +178,9 @@ export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
       <directionalLight position={[-10, 4, -30]} intensity={1.4} color="#6b9adf" />
       <Ship shipRef={ship} progress={launch} />
       <LaunchScene progress={launch} />
-      <EarthScene progress={launch} />
+      <EarthScene progress={launch} assets={assets} />
       {journeyPlanets.map(planet => <PlanetScene key={planet.id} planet={planet} model={explore}
-        progress={progress} buttons={hotspotButtons} hoverRef={hoverRef} open={openExplore} />)}
+        progress={progress} buttons={hotspotButtons} hoverRef={hoverRef} open={openExplore} assets={assets} />)}
       <NeptuneRoute model={explore} />
       <OverviewScene progress={progress} model={explore} panel={overviewRef} labels={mapRef} elements={mapLabels} />
       <points ref={starField} name="star-field">

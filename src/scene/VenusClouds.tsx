@@ -6,6 +6,8 @@ import type { MeshStandardMaterial, ShaderMaterial } from 'three'
 import type { Planet } from '../data/planets'
 import type { ExploreState } from '../journey/explore'
 import { planetVisibility } from '../journey/planetVisibility'
+import type { AssetStatus } from '../journey/assetStatus'
+import { useAssetAttempt } from '../journey/useAssetStatus'
 
 const noRaycast = () => {}
 const vertexShader = `varying vec3 worldNormal;
@@ -30,11 +32,12 @@ const fragmentShader = `uniform vec3 tint;
     #include <colorspace_fragment>
   }`
 
-export default function VenusClouds({ planet, material, model, progress }: {
+export default function VenusClouds({ planet, material, model, progress, assets }: {
   planet: Planet; material: RefObject<MeshStandardMaterial | null>; model: ExploreState;
-  progress: RefObject<{ current: number }>
+  progress: RefObject<{ current: number }>; assets: AssetStatus
 }) {
   const { gl, scene } = useThree()
+  const attempt = useAssetAttempt(assets, 'venus')
   const rim = useRef<ShaderMaterial>(null)
   const geometry = useMemo(() => new SphereGeometry(planet.scene.radius, 48, 32), [planet.scene.radius])
   const status = useMemo(() => ({ texture: 'loading', width: 0, height: 0, cloudOpacity: 0, rimStrength: 0.18, rimVisibility: 0 }), [])
@@ -45,6 +48,7 @@ export default function VenusClouds({ planet, material, model, progress }: {
     const clouds = material.current
     if (!clouds) return
     status.texture = 'loading'; status.width = status.height = 0
+    assets.mark('venus', 'loading')
     if (import.meta.env.DEV) scene.userData.venusAppearance = status
     const map = new TextureLoader().load('/assets/venus/atmosphere.jpg', texture => {
       if (!active) { texture.dispose(); return }
@@ -55,15 +59,16 @@ export default function VenusClouds({ planet, material, model, progress }: {
       clouds.color.set('#eee8db')
       clouds.needsUpdate = true
       status.texture = 'loaded'
+      assets.mark('venus', 'loaded')
       status.width = texture.image.width; status.height = texture.image.height
-    }, undefined, () => { if (active) status.texture = 'fallback' })
+    }, undefined, () => { if (active) { status.texture = 'fallback'; assets.mark('venus', 'failed') } })
     return () => {
       active = false
       map.dispose(); clouds.map = null
       clouds.color.set(planet.scene.color); clouds.needsUpdate = true
       if (scene.userData.venusAppearance === status) delete scene.userData.venusAppearance
     }
-  }, [gl, scene, material, planet.scene.color, status])
+  }, [gl, scene, material, planet.scene.color, status, assets, attempt])
   useEffect(() => () => geometry.dispose(), [geometry])
   useFrame(() => {
     const appliedUniforms = rim.current?.uniforms
