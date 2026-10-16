@@ -1,0 +1,108 @@
+{
+ "item14": {
+  "travel": [
+   {
+    "size": "1920x1080",
+    "progress": 0.658,
+    "scrollY": 15792,
+    "maxScroll": 24000,
+    "shipSame": true,
+    "cameraSame": true
+   },
+   {
+    "size": "1440x900",
+    "progress": 0.658,
+    "scrollY": 15792,
+    "maxScroll": 24000,
+    "shipSame": true,
+    "cameraSame": true
+   },
+   {
+    "size": "1280x720",
+    "progress": 0.658,
+    "scrollY": 15792,
+    "maxScroll": 24000,
+    "shipSame": true,
+    "cameraSame": true
+   }
+  ],
+  "exploreKeptState": true,
+  "exitRestores": true,
+  "focus": "explore-planet"
+ },
+ "item17": {
+  "1280x720": {
+   "pad": {
+    "overlaps": [],
+    "labelHitsPanel": false,
+    "clipped": [],
+    "offscreen": [],
+    "font": "\"Leelawadee UI\", Tahoma, sans-serif"
+   },
+   "mars": {
+    "overlaps": [],
+    "labelHitsPanel": false,
+    "clipped": [],
+    "offscreen": [],
+    "font": "\"Leelawadee UI\", Tahoma, sans-serif"
+   },
+   "overview": {
+    "overlaps": [
+     "overview/caption"
+    ],
+    "labelHitsPanel": false,
+    "clipped": [],
+    "offscreen": [],
+    "font": "\"Leelawadee UI\", Tahoma, sans-serif"
+   }
+  },
+  "1440x900": {
+   "pad": {
+    "overlaps": [],
+    "labelHitsPanel": false,
+    "clipped": [],
+    "offscreen": [],
+    "font": "\"Leelawadee UI\", Tahoma, sans-serif"
+   },
+   "mars": {
+    "overlaps": [],
+    "labelHitsPanel": false,
+    "clipped": [],
+    "offscreen": [],
+    "font": "\"Leelawadee UI\", Tahoma, sans-serif"
+   },
+   "overview": {
+    "overlaps": [],
+    "labelHitsPanel": false,
+    "clipped": [],
+    "offscreen": [],
+    "font": "\"Leelawadee UI\", Tahoma, sans-serif"
+   }
+  },
+  "1920x1080": {
+   "pad": {
+    "overlaps": [],
+    "labelHitsPanel": false,
+    "clipped": [],
+    "offscreen": [],
+    "font": "\"Leelawadee UI\", Tahoma, sans-serif"
+   },
+   "mars": {
+    "overlaps": [],
+    "labelHitsPanel": false,
+    "clipped": [],
+    "offscreen": [],
+    "font": "\"Leelawadee UI\", Tahoma, sans-serif"
+   },
+   "overview": {
+    "overlaps": [],
+    "labelHitsPanel": false,
+    "clipped": [],
+    "offscreen": [],
+    "font": "\"Leelawadee UI\", Tahoma, sans-serif"
+   }
+  }
+ },
+ "errors": [],
+ "failedRequests": []
+}

@@ -1,0 +1,31 @@
+{
+ "padStars": {
+  "position": [
+   5,
+   3.05,
+   3
+  ],
+  "camera": [
+   5,
+   3.05,
+   3
+  ],
+  "opacity": 0,
+  "count": 1200,
+  "uuid": "5e96da2c-4fa3-430b-a214-a356d9caa031"
+ },
+ "follow9475": true,
+ "follow12634": true,
+ "follow15792": true,
+ "follow19176": true,
+ "follow22320": true,
+ "overviewFollow": true,
+ "reversePoses": true,
+ "padPose": true,
+ "padOpacityAfter": 0,
+ "exploreFollow": true,
+ "exitRestore": false,
+ "focus": "explore-planet",
+ "sameGeometry": true,
+ "errors": []
+}

@@ -1,0 +1,47 @@
+{
+ "reduced": {
+  "reducedFlag": true,
+  "leanCurrent": {
+   "x": 0,
+   "y": 0
+  },
+  "menuIntermediateFrames": 0,
+  "menuMaxFade": 1,
+  "menuOverlayPeak": 1,
+  "menuFadeFrames": 10,
+  "smallScrollEases": true,
+  "smallScrollNoFade": true,
+  "enterTransitionFrames": 0,
+  "enterFade": 1,
+  "hotspotMovingFrames": 0,
+  "exitTransitionFrames": 0,
+  "exitRestore": true,
+  "focus": "explore-planet",
+  "overlayPointerEvents": "none",
+  "replayProgress": 0,
+  "liveToggle": true
+ },
+ "normal": {
+  "reducedFlag": false,
+  "leanCurrent": {
+   "x": 0.9950887352148051,
+   "y": 0.9966459945813384
+  },
+  "menuIntermediateFrames": 9,
+  "menuMaxFade": 0,
+  "menuOverlayPeak": 0,
+  "menuFadeFrames": 0,
+  "smallScrollEases": true,
+  "smallScrollNoFade": true,
+  "enterTransitionFrames": 27,
+  "enterFade": 0,
+  "hotspotMovingFrames": 28,
+  "exitTransitionFrames": 45,
+  "exitRestore": true,
+  "focus": "explore-planet",
+  "overlayPointerEvents": "none",
+  "replayProgress": 0,
+  "liveToggle": true
+ },
+ "errors": []
+}

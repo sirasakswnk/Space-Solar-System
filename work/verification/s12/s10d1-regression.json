@@ -1,0 +1,69 @@
+{
+ "none": {
+  "fallback": true,
+  "canvas": false,
+  "planets": [
+   "Earth — โลก",
+   "Mercury — ดาวพุธ",
+   "Venus — ดาวศุกร์",
+   "Mars — ดาวอังคาร",
+   "Jupiter — ดาวพฤหัสบดี",
+   "Saturn — ดาวเสาร์",
+   "Uranus — ดาวยูเรนัส",
+   "Neptune — ดาวเนปจูน"
+  ],
+  "hotspots": 14,
+  "sources": 7,
+  "images": 8,
+  "imageAlts": true,
+  "assetStatus": false,
+  "notice": "เบราว์เซอร์หรืออุปกรณ์นี้แสดงฉากสามมิติ ",
+  "imagesDecoded": true,
+  "tabsToMarsLink": 3,
+  "focusVisible": true,
+  "marsSectionTop": 0,
+  "hash": "#planet-mars",
+  "errors": []
+ },
+ "late": {
+  "fallback": true,
+  "canvas": false,
+  "planets": [
+   "Earth — โลก",
+   "Mercury — ดาวพุธ",
+   "Venus — ดาวศุกร์",
+   "Mars — ดาวอังคาร",
+   "Jupiter — ดาวพฤหัสบดี",
+   "Saturn — ดาวเสาร์",
+   "Uranus — ดาวยูเรนัส",
+   "Neptune — ดาวเนปจูน"
+  ],
+  "hotspots": 14,
+  "sources": 7,
+  "images": 8,
+  "imageAlts": true,
+  "assetStatus": false,
+  "notice": "เบราว์เซอร์หรืออุปกรณ์นี้แสดงฉากสามมิติ ",
+  "imagesDecoded": true,
+  "tabsToMarsLink": 3,
+  "focusVisible": true,
+  "marsSectionTop": 0,
+  "hash": "#planet-mars",
+  "errors": [
+   "THREE.WebGLRenderer: THREE.WebGLRenderer: Error creating WebGL context.",
+   "%o\n\n%s\n\n%s\n Error: THREE.WebGLRenderer: Error creating WebGL context.\n    at new WebGLRenderer (http://127.0.0.1:5173/node_modules/.vite/dep"
+  ]
+ },
+ "webgl": {
+  "fallback": false,
+  "canvas": true,
+  "planets": [],
+  "hotspots": 0,
+  "sources": 0,
+  "images": 0,
+  "imageAlts": true,
+  "assetStatus": true,
+  "journeyRunning": true,
+  "errors": []
+ }
+}

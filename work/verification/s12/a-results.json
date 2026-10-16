@@ -1,0 +1,138 @@
+{
+ "item1": {
+  "assets": true,
+  "ship": [
+   0,
+   0.65,
+   0
+  ],
+  "shipParts": 18,
+  "padLabel": "Earth — ฐานปล่อย"
+ },
+ "item2": {
+  "pad": {
+   "label": "Earth",
+   "engine": 0,
+   "shipY": 0.65,
+   "sky": "528bb4",
+   "clouds": 0.38,
+   "smoke": 0,
+   "arm": 1
+  },
+  "ignition": {
+   "label": "จุดเครื่องยนต์",
+   "engine": 0.44,
+   "shipY": 0.65,
+   "sky": "528bb4",
+   "clouds": 0.38,
+   "smoke": 0.1,
+   "arm": 0.67
+  },
+  "liftoff": {
+   "label": "ยกตัวจาก Earth",
+   "engine": 1,
+   "shipY": 1.13,
+   "sky": "528bb4",
+   "clouds": 0.38,
+   "smoke": 0.35,
+   "arm": 0.25
+  },
+  "clouds": {
+   "label": "ผ่านชั้นบรรยากาศ",
+   "engine": 1,
+   "shipY": 5.34,
+   "sky": "365e7b",
+   "clouds": 0.16,
+   "smoke": 0,
+   "arm": 0.25
+  },
+  "space": {
+   "label": "เดินทางสู่ Mercury",
+   "engine": 0.37,
+   "shipY": 7.47,
+   "sky": "080e1b",
+   "clouds": 0,
+   "smoke": 0,
+   "arm": 0.25
+  }
+ },
+ "item3": {
+  "settleMs": 789,
+  "stillAfter1500ms": true,
+  "progress": 0.1777
+ },
+ "item5": {
+  "labels": [
+   "Earth",
+   "จุดเครื่องยนต์",
+   "ยกตัวจาก Earth",
+   "ผ่านชั้นบรรยากาศ",
+   "เดินทางสู่ Mercury",
+   "Mercury",
+   "เดินทางสู่ Venus",
+   "Venus",
+   "เดินทางสู่ Mars",
+   "Mars",
+   "เดินทางสู่ Jupiter",
+   "Jupiter",
+   "เดินทางสู่ Saturn",
+   "Saturn",
+   "เดินทางสู่ Uranus",
+   "Uranus",
+   "เดินทางสู่ Neptune",
+   "Neptune",
+   "ภาพรวมการเดินทาง"
+  ],
+  "planets": [
+   "Mercury",
+   "Venus",
+   "Mars",
+   "Jupiter",
+   "Saturn",
+   "Uranus",
+   "Neptune"
+  ]
+ },
+ "item4": {
+  "samePose": true,
+  "engine": {
+   "engine": 0,
+   "plume": 0,
+   "exhaustVisible": false
+  },
+  "launch": {
+   "sky": "528bb4",
+   "cloudOpacity": 0.38,
+   "smokeOpacity": 0,
+   "smokeVisible": false,
+   "armExtension": 1
+  },
+  "sameLaunch": true,
+  "planetsHidden": true,
+  "label": "Earth — ฐานปล่อย"
+ },
+ "item13": {
+  "rapidMatchesDirect": true,
+  "fastMatchesDirect": true,
+  "duringExploreLatestWins": true
+ },
+ "item15": {
+  "overviewVisible": true,
+  "labels": [
+   "Earth · เริ่มต้น",
+   "Mercury",
+   "Venus",
+   "Mars",
+   "Jupiter",
+   "Saturn",
+   "Uranus",
+   "Neptune"
+  ],
+  "mapToSaturn": true,
+  "exploringSaturn": "saturn",
+  "replayAtPad": true,
+  "replayFocus": "site-title"
+ },
+ "errors": [],
+ "failedRequests": []
+}

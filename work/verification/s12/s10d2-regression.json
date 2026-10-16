@@ -1,0 +1,129 @@
+{
+ "overviewTop": {
+  "1280x720": 195,
+  "1440x900": 195,
+  "1920x1080": 195
+ },
+ "failureOverview": {
+  "retry": {
+   "id": "",
+   "text": "ลองโหลดใหม่",
+   "visible": true,
+   "covered": false
+  },
+  "replay": {
+   "id": "",
+   "text": "เริ่มการเดินทางใหม่",
+   "visible": true,
+   "covered": false
+  },
+  "statusBottom": 281,
+  "panelTop": 297
+ },
+ "keyboardJourney": {
+  "steps": [
+   [
+    "menu",
+    {
+     "id": "",
+     "text": "เลือกจุดหมาย / เริ่มใหม่",
+     "visible": true,
+     "covered": false
+    }
+   ],
+   [
+    "Mars button",
+    {
+     "id": "",
+     "text": "ไปยัง Mars — ดาวอังคาร",
+     "visible": true,
+     "covered": false
+    }
+   ],
+   [
+    "after jump",
+    {
+     "progress": 0.3948,
+     "id": "",
+     "text": "เลือกจุดหมาย / เริ่มใหม่",
+     "visible": true,
+     "covered": false
+    }
+   ],
+   [
+    "explore button",
+    {
+     "id": "explore-planet",
+     "text": "สำรวจ Mars",
+     "visible": true,
+     "covered": false
+    }
+   ],
+   [
+    "dialog opened",
+    {
+     "id": "",
+     "text": "กลับสู่การเดินทาง",
+     "visible": true,
+     "covered": false
+    }
+   ],
+   [
+    "hotspot 2",
+    {
+     "id": "",
+     "text": "2. น้ำแข็งบริเวณขั้วดาว",
+     "visible": true,
+     "covered": false
+    }
+   ],
+   [
+    "rotate",
+    {
+     "id": "",
+     "text": "หมุนขวา",
+     "visible": true,
+     "covered": false
+    }
+   ],
+   [
+    "after Escape",
+    {
+     "id": "explore-planet",
+     "text": "สำรวจ Mars",
+     "visible": true,
+     "covered": false
+    }
+   ],
+   [
+    "End key",
+    {
+     "progress": 1,
+     "overview": true
+    }
+   ],
+   [
+    "overview replay",
+    {
+     "id": "",
+     "text": "เริ่มการเดินทางใหม่",
+     "visible": true,
+     "covered": false
+    }
+   ],
+   [
+    "after replay",
+    {
+     "progress": 0,
+     "id": "site-title",
+     "text": "BEYOND",
+     "visible": true,
+     "covered": true
+    }
+   ]
+  ],
+  "selected": "mars-polar",
+  "rotated": true
+ },
+ "errors": []
+}

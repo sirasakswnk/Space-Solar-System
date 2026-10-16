@@ -1,0 +1,38 @@
+{
+ "load": {
+  "canvas": true,
+  "devSnapshot": "absent",
+  "padLabel": "Earth"
+ },
+ "neptune": {
+  "label": "Neptune",
+  "exploreButton": "สำรวจ Neptune"
+ },
+ "explore": {
+  "dialogOpen": true,
+  "title": "Neptune — ดาวเนปจูน"
+ },
+ "exit": {
+  "dialogOpen": false,
+  "focus": "explore-planet",
+  "scrollY": 22320
+ },
+ "overview": {
+  "panel": true,
+  "labels": true
+ },
+ "replay": {
+  "scrollY": 0,
+  "label": "Earth",
+  "focus": "site-title"
+ },
+ "assetStatuses": [
+  200
+ ],
+ "fallback": {
+  "shown": true,
+  "planets": 8
+ },
+ "errors": [],
+ "failedRequests": []
+}

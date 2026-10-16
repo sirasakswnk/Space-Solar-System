@@ -1,0 +1,153 @@
+{
+ "item6": {
+  "shipSame": true,
+  "cameraPositionSame": true,
+  "rotated": true
+ },
+ "item7": {
+  "hoverName": "Jupiter — ดาวพฤหัสบดี",
+  "cursor": "pointer",
+  "buttonOpens": true
+ },
+ "item8": {
+  "distanceBefore": 18,
+  "distanceAfter": 9.88,
+  "scrollUnchanged": true,
+  "progressUnchanged": true
+ },
+ "item9": {
+  "panelScrollable": true,
+  "panelScrolledBy": 300,
+  "sceneDistanceUnchanged": true,
+  "pageScrollUnchanged": true
+ },
+ "item10": {
+  "rotated": true,
+  "stoppedAfterBlur": true,
+  "minDistance": 8,
+  "cameraToCentre": 8,
+  "outsideSurface": true
+ },
+ "item11": {
+  "buttonRestores": true,
+  "focusAfterButton": "explore-planet",
+  "escapeRestores": true,
+  "focusAfterEscape": "explore-planet"
+ },
+ "item12": {
+  "mercury": [
+   {
+    "info": "impact-craters",
+    "selected": true,
+    "title": "พื้นผิวและหลุมอุกกาบาต",
+    "text": 303,
+    "items": 2
+   },
+   {
+    "info": "environment",
+    "selected": true,
+    "title": "สภาพแวดล้อม",
+    "text": 289,
+    "items": 2
+   }
+  ],
+  "venus": [
+   {
+    "info": "venus-clouds",
+    "selected": true,
+    "title": "ชั้นเมฆ",
+    "text": 261,
+    "items": 2
+   },
+   {
+    "info": "venus-atmosphere",
+    "selected": true,
+    "title": "บรรยากาศและความร้อน",
+    "text": 298,
+    "items": 2
+   }
+  ],
+  "mars": [
+   {
+    "info": "mars-terrain",
+    "selected": true,
+    "title": "ภูมิประเทศสีแดง",
+    "text": 294,
+    "items": 2
+   },
+   {
+    "info": "mars-polar",
+    "selected": true,
+    "title": "น้ำแข็งบริเวณขั้วดาว",
+    "text": 284,
+    "items": 2
+   }
+  ],
+  "jupiter": [
+   {
+    "info": "jupiter-clouds",
+    "selected": true,
+    "title": "แถบเมฆ",
+    "text": 300,
+    "items": 2
+   },
+   {
+    "info": "jupiter-storm",
+    "selected": true,
+    "title": "พายุ Great Red Spot",
+    "text": 319,
+    "items": 2
+   }
+  ],
+  "saturn": [
+   {
+    "info": "saturn-rings",
+    "selected": true,
+    "title": "ชมวงแหวน",
+    "text": 263,
+    "items": 2
+   },
+   {
+    "info": "saturn-body",
+    "selected": true,
+    "title": "ชมตัวดาว",
+    "text": 322,
+    "items": 2
+   }
+  ],
+  "uranus": [
+   {
+    "info": "uranus-axis",
+    "selected": true,
+    "title": "แนวแกนหมุน",
+    "text": 294,
+    "items": 2
+   },
+   {
+    "info": "uranus-atmosphere",
+    "selected": true,
+    "title": "บรรยากาศสีฟ้าอมเขียว",
+    "text": 360,
+    "items": 2
+   }
+  ],
+  "neptune": [
+   {
+    "info": "neptune-atmosphere",
+    "selected": true,
+    "title": "ชมบรรยากาศใกล้",
+    "text": 407,
+    "items": 2
+   },
+   {
+    "info": "neptune-route",
+    "selected": true,
+    "title": "เทียบเส้นทางที่เดินทางมา",
+    "text": 283,
+    "items": 2
+   }
+  ]
+ },
+ "errors": [],
+ "failedRequests": []
+}

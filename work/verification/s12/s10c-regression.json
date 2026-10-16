@@ -1,0 +1,45 @@
+{
+ "normal": {
+  "seen": [
+   "กำลังโหลดภาพดาว 0/9 ไฟล์",
+   "กำลังโหลดภาพดาว 2/9 ไฟล์",
+   "กำลังโหลดภาพดาว 3/9 ไฟล์",
+   "กำลังโหลดภาพดาว 4/9 ไฟล์",
+   "กำลังโหลดภาพดาว 5/9 ไฟล์",
+   "กำลังโหลดภาพดาว 6/9 ไฟล์",
+   "กำลังโหลดภาพดาว 7/9 ไฟล์",
+   "กำลังโหลดภาพดาว 8/9 ไฟล์"
+  ],
+  "finalHidden": true,
+  "states": true
+ },
+ "failure": {
+  "text": "โหลดภาพไม่สำเร็จ: เมฆ Earth, Mars — แสดงสีสำรองแทนลองโหลดใหม่",
+  "retryButton": "ลองโหลดใหม่",
+  "states": {
+   "earth-surface": "loaded",
+   "earth-clouds": "failed",
+   "mercury": "loaded",
+   "venus": "loaded",
+   "mars": "failed",
+   "jupiter": "loaded",
+   "saturn": "loaded",
+   "uranus": "loaded",
+   "neptune": "loaded"
+  },
+  "marsFallback": "fallback",
+  "exploreWorks": true
+ },
+ "retry": {
+  "focusAfterClick": "asset-status",
+  "requestDelta": {
+   "/assets/earth/clouds.jpg": 1,
+   "/assets/mars/surface.jpg": 1
+  },
+  "states": true,
+  "marsTexture": "loaded",
+  "earthClouds": "loaded",
+  "earthCloudsVisible": true
+ },
+ "errors": []
+}

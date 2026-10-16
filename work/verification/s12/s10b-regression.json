@@ -1,0 +1,68 @@
+{
+ "systemReduceDefault": {
+  "ui": {
+   "reduced": true,
+   "quality": "standard",
+   "canvasWidth": 1265,
+   "summary": "เลือกจุดหมาย / เริ่มใหม่",
+   "settingsSummary": "ตั้งค่า"
+  },
+  "motion": true
+ },
+ "systemNormalDefault": {
+  "ui": {
+   "reduced": false,
+   "quality": "standard",
+   "canvasWidth": 1265,
+   "summary": "เลือกจุดหมาย / เริ่มใหม่",
+   "settingsSummary": "ตั้งค่า"
+  },
+  "motion": false,
+  "pixelRatio": 1
+ },
+ "layout": {
+  "captionTop": 519.828125,
+  "navBottom": 448,
+  "settingsBottom": 329,
+  "settingsRight": 534.40625,
+  "clearOfCaption": true,
+  "panelsSeparate": true
+ },
+ "tabsToCheckbox": 1,
+ "afterSpace": {
+  "ui": true,
+  "motion": true
+ },
+ "choiceSurvivesSystemChange": true,
+ "lightMode": {
+  "ui": {
+   "reduced": true,
+   "quality": "light",
+   "canvasWidth": 948,
+   "summary": "เลือกจุดหมาย / เริ่มใหม่",
+   "settingsSummary": "ตั้งค่า"
+  },
+  "pixelRatio": 0.75
+ },
+ "lightKeepsProgressAndPose": true,
+ "fpsLight": 20.8,
+ "standardPixelRatio": 1,
+ "fpsStandard": 17,
+ "markersVisible": 1,
+ "exploreRestoreLight": true,
+ "focusAfterExit": "explore-planet",
+ "overviewClear": true,
+ "afterReplay": {
+  "progress": 0,
+  "ui": {
+   "reduced": true,
+   "quality": "light",
+   "canvasWidth": 948,
+   "summary": "เลือกจุดหมาย / เริ่มใหม่",
+   "settingsSummary": "ตั้งค่า"
+  },
+  "motion": true,
+  "pixelRatio": 0.75
+ },
+ "errors": []
+}
