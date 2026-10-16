@@ -16,11 +16,16 @@ import type { Quality } from './journey/quality'
 import SettingsControls from './SettingsControls'
 import { createAssetStatus } from './journey/assetStatus'
 import AssetStatusLine from './AssetStatusLine'
+import { detectWebGL } from './journey/webgl'
+import SceneBoundary from './SceneBoundary'
+import FallbackPage from './FallbackPage'
 
 export default function App() {
   const [explore] = useState(createExploreState)
   const [motion] = useState(createMotionPreference)
   const [assets] = useState(createAssetStatus)
+  // Without WebGL, show the journey as readable content instead of a blank page.
+  const [sceneAvailable, setSceneAvailable] = useState(() => detectWebGL())
   const { reduced, setReduced } = useReducedMotion(motion)
   // Settings live outside the journey state, so starting over keeps them.
   const [quality, setQuality] = useState<Quality>('standard')
@@ -48,6 +53,7 @@ export default function App() {
   const exploreButtonRef = useRef<HTMLButtonElement>(null)
   const hoverRef = useRef<HTMLSpanElement>(null)
   const openExplore = (planet?: Planet) => open(exploreButtonRef.current, planet)
+  if (!sceneAvailable) return <FallbackPage />
   return (
     <main className="experience" aria-labelledby="site-title" data-mode={phase}
       style={{ minHeight: `calc(100vh + ${journeyScrollLength}px)` }}>
@@ -70,6 +76,7 @@ export default function App() {
         role="img"
         aria-label="ยานสำรวจเดินทางจาก Earth ผ่าน Mercury, Venus, Mars, Jupiter, Saturn, Uranus และ Neptune เลื่อนลงเพื่อเดินหน้า เลื่อนขึ้นเพื่อย้อนกลับ"
       >
+        <SceneBoundary onError={() => setSceneAvailable(false)}>
         <Canvas
           camera={{ position: [3, 3, 7], fov: 50, near: 0.1, far: 1000 }}
           dpr={qualityDpr(quality, window.devicePixelRatio)}
@@ -132,6 +139,7 @@ export default function App() {
             changePhase={changePhase} openExplore={openExplore} hotspotButtons={hotspotButtons}
             overviewRef={overviewRef} mapRef={mapRef} mapLabels={mapLabels} motion={motion} fadeRef={fadeRef} assets={assets} />
         </Canvas>
+        </SceneBoundary>
       </div>
       <div ref={fadeRef} className="motion-fade" aria-hidden="true" />
       <div ref={mapRef} className="overview-labels" hidden aria-label="จุดในภาพรวมเส้นทาง">

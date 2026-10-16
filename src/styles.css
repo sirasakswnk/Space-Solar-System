@@ -31,6 +31,16 @@ h1 { margin: 12px 0 8px; font-size: 48px; line-height: 1; letter-spacing: 0.16em
 .asset-credit a { color: #b9ddeb; pointer-events: auto; }
 .asset-credit a:focus-visible { outline: 3px solid #8cddff; outline-offset: 3px; }
 .fallback { padding: 40px; }
+.fallback-page { max-width: 860px; margin: 0 auto; padding: 48px 40px 64px; line-height: 1.7; }
+.fallback-notice { padding: 14px 16px; border: 1px solid #49647c; border-radius: 8px; background: #0b182b; }
+.fallback-route { padding-left: 1.4em; }
+.fallback-planet { margin-top: 40px; padding-top: 24px; border-top: 1px solid #2a3f55; }
+.fallback-planet img { display: block; width: 100%; max-width: 512px; height: auto; border-radius: 6px; background: #142538; }
+.fallback-hotspot h3 { margin-bottom: 4px; font-size: 18px; }
+.fallback-note { color: #a2b2c7; font-size: 14px; }
+.fallback-page a { color: #9fdcf3; }
+.fallback-page a:focus-visible { outline: 3px solid #8cddff; outline-offset: 3px; }
+.fallback-footer { margin-top: 48px; color: #a2b2c7; font-size: 14px; }
 .scroll-hint { font-size: 14px; color: #c6d2df; }
 .journey-meter { position: fixed; z-index: 1; top: 40px; right: 48px; width: 260px; line-height: 1.8; }
 .journey-meter label { display: block; font-size: 13px; color: #c6d2df; }
