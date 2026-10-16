@@ -11,11 +11,16 @@ import { journeyScrollLength } from './journey/path'
 import DestinationControls from './DestinationControls'
 import { createMotionPreference } from './journey/motion'
 import useReducedMotion from './journey/useReducedMotion'
+import { qualityDpr } from './journey/quality'
+import type { Quality } from './journey/quality'
+import SettingsControls from './SettingsControls'
 
 export default function App() {
   const [explore] = useState(createExploreState)
   const [motion] = useState(createMotionPreference)
-  useReducedMotion(motion)
+  const { reduced, setReduced } = useReducedMotion(motion)
+  // Settings live outside the journey state, so starting over keeps them.
+  const [quality, setQuality] = useState<Quality>('standard')
   const fadeRef = useRef<HTMLDivElement>(null)
   const progress = useJourneyScroll(explore)
   const { phase, changePhase, open, close, selectedHotspot, selectHotspot, resetView, axisVisible, toggleAxis, navigate } = useExploreJourney(explore, progress)
@@ -52,6 +57,10 @@ export default function App() {
         <summary ref={navigationSummaryRef}>เลือกจุดหมาย / เริ่มใหม่</summary>
         <DestinationControls context="travel" onNavigate={onNavigate} onReplay={onReplay} />
       </details>
+      <details className="settings-panel">
+        <summary>ตั้งค่า</summary>
+        <SettingsControls reduced={reduced} setReduced={setReduced} quality={quality} setQuality={setQuality} />
+      </details>
 
       <div
         className="scene"
@@ -60,7 +69,7 @@ export default function App() {
       >
         <Canvas
           camera={{ position: [3, 3, 7], fov: 50, near: 0.1, far: 1000 }}
-          dpr={[1, 1.5]}
+          dpr={qualityDpr(quality, window.devicePixelRatio)}
           onCreated={({ gl, scene, camera }) => {
             // Read-only development diagnostics for checking the applied 3D pose.
             if (import.meta.env.DEV) Object.defineProperty(gl.domElement, 'journeySnapshot', {
@@ -95,6 +104,7 @@ export default function App() {
                 overview: scene.userData.overview,
                 pointerLook: scene.userData.pointerLook ? structuredClone(scene.userData.pointerLook) : null,
                 motion: scene.userData.motion ? { ...scene.userData.motion } : null,
+                pixelRatio: gl.getPixelRatio(),
                 camera: camera.position.toArray(),
                 cameraQuaternion: camera.quaternion.toArray(),
                 explore: scene.userData.exploreState ? {
