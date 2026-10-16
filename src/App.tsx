@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber'
-import { useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import JourneyScene from './scene/JourneyScene'
 import useJourneyScroll from './journey/useJourneyScroll'
 import { createExploreState } from './journey/explore'
@@ -53,6 +53,17 @@ export default function App() {
   const exploreButtonRef = useRef<HTMLButtonElement>(null)
   const hoverRef = useRef<HTMLSpanElement>(null)
   const openExplore = (planet?: Planet) => open(exploreButtonRef.current, planet)
+  // The meter grows while a loading message shows; keep the overview panel below it.
+  const meterAsideRef = useRef<HTMLElement>(null)
+  useEffect(() => {
+    const meter = meterAsideRef.current
+    if (!meter) return
+    const publish = () => document.documentElement.style.setProperty('--meter-bottom', `${meter.getBoundingClientRect().bottom}px`)
+    const observer = new ResizeObserver(publish)
+    observer.observe(meter)
+    publish()
+    return () => observer.disconnect()
+  }, [sceneAvailable])
   if (!sceneAvailable) return <FallbackPage />
   return (
     <main className="experience" aria-labelledby="site-title" data-mode={phase}
@@ -167,7 +178,7 @@ export default function App() {
         <p className="asset-credit">ภาพ Earth / Mercury / Venus / Mars / Jupiter / Saturn / Uranus / Neptune: <a href="https://ssi.solarsystemscope.com/textures/" target="_blank" rel="noopener noreferrer">Solar System Scope</a>
           {' · '}<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></p>
       </footer>
-      <aside className="journey-meter" aria-label="เส้นทาง Earth ผ่านดาวทั้งเจ็ดถึง Neptune">
+      <aside ref={meterAsideRef} className="journey-meter" aria-label="เส้นทาง Earth ผ่านดาวทั้งเจ็ดถึง Neptune">
         <p>Earth → {journeyPlanets.map(planet => planet.name).join(' → ')}</p>
         <label htmlFor="journey-progress">ความคืบหน้า <span ref={percentRef}>0%</span></label>
         <progress ref={meterRef} id="journey-progress" max={100} value={0} />

@@ -1,0 +1,74 @@
+
+== pad (5 stops)
+    SUMMARY เลือกจุดหมาย / เริ่มใหม่
+    SUMMARY ตั้งค่า
+    A Solar System Scope
+    A CC BY 4.0
+! V undefined BODY
+
+== mars stop (6 stops)
+    SUMMARY ตั้งค่า
+    BUTTON สำรวจ Mars
+    A Solar System Scope
+    A CC BY 4.0
+! V undefined BODY
+    SUMMARY เลือกจุดหมาย / เริ่มใหม่
+
+== mars stop, both menus open (16 stops)
+    INPUT ลดการเคลื่อนไหว [checkbox]
+    INPUT มาตรฐาน [radio]
+    BUTTON สำรวจ Mars
+    A Solar System Scope
+    A CC BY 4.0
+! V undefined BODY
+    SUMMARY เลือกจุดหมาย / เริ่มใหม่
+    BUTTON ไปยัง Mercury — ดาวพุธ
+    BUTTON ไปยัง Venus — ดาวศุกร์
+    BUTTON ไปยัง Mars — ดาวอังคาร
+    BUTTON ไปยัง Jupiter — ดาวพฤหัสบดี
+    BUTTON ไปยัง Saturn — ดาวเสาร์
+    BUTTON ไปยัง Uranus — ดาวยูเรนัส
+    BUTTON ไปยัง Neptune — ดาวเนปจูน
+    BUTTON เริ่มการเดินทางใหม่
+    SUMMARY ตั้งค่า
+
+== explore dialog (Mars) (15 stops)
+    BUTTON 1. ภูมิประเทศสีแดง
+    BUTTON 2. น้ำแข็งบริเวณขั้วดาว
+    A แหล่งข้อมูล: NASA — Mars Facts (
+    A Solar System Scope
+    A CC BY 4.0
+    BUTTON หมุนซ้าย
+    BUTTON หมุนขวา
+    BUTTON มองขึ้น
+    BUTTON มองลง
+    BUTTON ซูมเข้า
+    BUTTON ซูมออก
+    BUTTON คืนมุมเริ่มต้น
+    SUMMARY เปลี่ยนจุดหมาย / เริ่มใหม่
+    BUTTON จุดข้อมูล 1: ภูมิประเทศสีแดง
+    BUTTON กลับสู่การเดินทาง
+
+== overview (20 stops)
+    A Solar System Scope
+    A CC BY 4.0
+! V undefined BODY
+    SUMMARY เลือกจุดหมาย / เริ่มใหม่
+    SUMMARY ตั้งค่า
+    BUTTON เลือก Mercury จากภาพรวม
+    BUTTON เลือก Venus จากภาพรวม
+    BUTTON เลือก Mars จากภาพรวม
+    BUTTON เลือก Jupiter จากภาพรวม
+    BUTTON เลือก Saturn จากภาพรวม
+    BUTTON เลือก Uranus จากภาพรวม
+    BUTTON เลือก Neptune จากภาพรวม
+    BUTTON ไปยัง Mercury — ดาวพุธ
+    BUTTON ไปยัง Venus — ดาวศุกร์
+    BUTTON ไปยัง Mars — ดาวอังคาร
+    BUTTON ไปยัง Jupiter — ดาวพฤหัสบดี
+    BUTTON ไปยัง Saturn — ดาวเสาร์
+    BUTTON ไปยัง Uranus — ดาวยูเรนัส
+    BUTTON ไปยัง Neptune — ดาวเนปจูน
+    BUTTON เริ่มการเดินทางใหม่
+
+== overview with failed texture: retry button {"covered":false,"coveredBy":"","buttonBottom":275,"statusBottom":281,"overviewTop":297}
