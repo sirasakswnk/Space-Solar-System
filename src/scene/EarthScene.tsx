@@ -6,8 +6,11 @@ import { AdditiveBlending, BackSide, Color, Group, Mesh, MeshStandardMaterial,
 import { earthCenter, earthRadius } from '../journey/path'
 import type { AssetStatus } from '../journey/assetStatus'
 import { useAssetAttempt } from '../journey/useAssetStatus'
+import { earthCloudDrift } from '../journey/spin'
 
-export default function EarthScene({ progress, assets }: { progress: RefObject<{ current: number }>; assets: AssetStatus }) {
+export default function EarthScene({ progress, assets, spin }: {
+  progress: RefObject<{ current: number }>; assets: AssetStatus; spin: { time: number }
+}) {
   const surfaceAttempt = useAssetAttempt(assets, 'earth-surface')
   const cloudAttempt = useAssetAttempt(assets, 'earth-clouds')
   const world = useRef<Group>(null)
@@ -92,7 +95,7 @@ export default function EarthScene({ progress, assets }: { progress: RefObject<{
     // Presentation rotation follows scroll, including pause, reverse and replay.
     if (world.current) world.current.rotation.set(0.65, 0.9 + p * 0.22, 0.35)
     if (clouds.current) {
-      clouds.current.rotation.y = 0.07 + p * 0.08
+      clouds.current.rotation.y = 0.07 + p * 0.08 + spin.time * earthCloudDrift
       clouds.current.visible = resources.status.clouds === 'loaded'
     }
     if (import.meta.env.DEV) scene.userData.earthAppearance = {

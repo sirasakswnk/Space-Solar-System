@@ -69,7 +69,7 @@ export default function useExploreJourney(model: ExploreState,
       setAxisVisible(true)
     }
     // Replace the current focus animation from its applied orbit: latest selection wins.
-    model.focus = { from: { ...model.orbit }, to: hotspotOrbit(model.planet, hotspot), elapsed: 0 }
+    model.focus = { from: { ...model.orbit }, to: hotspotOrbit(model.planet, hotspot, model.spin.time), elapsed: 0 }
   }, [model])
   const resetView = useCallback(() => {
     model.focus = null

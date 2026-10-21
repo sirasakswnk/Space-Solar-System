@@ -14,6 +14,7 @@ import { planetVisibility } from '../journey/planetVisibility'
 import type { ExploreState } from '../journey/explore'
 import { orbitPosition } from '../journey/explore'
 import SaturnRings from './SaturnRings'
+import { worldSpin } from '../journey/spin'
 
 export type HotspotButtons = RefObject<Record<string, HTMLButtonElement | null>>
 
@@ -21,6 +22,7 @@ export default function PlanetHotspots({ planet, model, buttons, progress }: {
   planet: Planet; model: ExploreState; buttons: HotspotButtons; progress: RefObject<{ current: number }>
 }) {
   const features = useRef<Group>(null)
+  const spinning = useRef<Group>(null)
   const points = useMemo(() => planet.hotspots.map(hotspot => {
     const normal = orbitPosition({ ...hotspot.anchor, distance: 1 }, new Vector3(), new Vector3())
     return { hotspot, normal,
@@ -30,7 +32,8 @@ export default function PlanetHotspots({ planet, model, buttons, progress }: {
       featurePosition: normal.clone().multiplyScalar(planet.scene.radius + 0.015) }
   }), [planet])
   const scratch = useMemo(() => ({ projected: new Vector3(), toCamera: new Vector3(),
-    towardPoint: new Vector3(), closest: new Vector3(), center: new Vector3(...planet.scene.center) }), [planet])
+    towardPoint: new Vector3(), closest: new Vector3(), center: new Vector3(...planet.scene.center),
+    spin: new Quaternion(), normal: new Vector3(), position: new Vector3(), origin: new Vector3() }), [planet])
   const jupiterBands = useMemo(() => planet.id === 'jupiter' ? (['clouds', 'storm'] as const).map(kind => ({
     kind, ...jupiterSelectionBand(jupiterMapRegions[kind], planet.scene.radius + jupiterOutlines.radiusOffset, jupiterOutlines[kind]),
   })) : [], [planet])
@@ -38,10 +41,15 @@ export default function PlanetHotspots({ planet, model, buttons, progress }: {
     const active = model.phase === 'exploring' && model.planet.id === planet.id
     const opacity = planetVisibility(planet.id, progress.current.current, model.phase === 'travel' ? null : model.planet.id)
     if (features.current) features.current.visible = opacity > 0
+    // Outlines and markers turn with the planet's spin so they stay on the image.
+    worldSpin(planet, model.spin.time, scratch.spin)
+    if (spinning.current) spinning.current.quaternion.copy(scratch.spin)
     camera.updateMatrixWorld()
-    for (const { hotspot, normal, position } of points) {
+    for (const { hotspot } of points) {
       const button = buttons.current[hotspot.id]
       if (!button) continue
+      const normal = orbitPosition({ ...hotspot.anchor, distance: 1 }, scratch.origin, scratch.normal).applyQuaternion(scratch.spin)
+      const position = scratch.position.copy(normal).multiplyScalar(planet.scene.radius + hotspot.anchor.height).add(scratch.center)
       scratch.toCamera.copy(camera.position).sub(position)
       scratch.projected.copy(position).project(camera)
       let unoccluded = normal.dot(scratch.toCamera) > 0
@@ -79,6 +87,7 @@ export default function PlanetHotspots({ planet, model, buttons, progress }: {
           </mesh>)}
         </group>
       </group>}
+      <group ref={spinning}>
       {points.filter(point => point.hotspot.kind === 'crater').map(({ hotspot, capOrientation }) => (
         <mesh key={hotspot.id} name="mercury-crater-highlight" quaternion={capOrientation}
           visible={model.selectedHotspot === hotspot.id}>
@@ -138,6 +147,7 @@ export default function PlanetHotspots({ planet, model, buttons, progress }: {
           <meshBasicMaterial color="#9de9ff" />
         </mesh>
       ))}
+      </group>
     </group>
   )
 }

@@ -1,6 +1,7 @@
 import { Quaternion, Vector3 } from 'three'
 import { mercury } from '../data/planets.ts'
 import type { Hotspot, Planet } from '../data/planets.ts'
+import { worldSpin } from './spin.ts'
 
 export type ExplorePhase = 'travel' | 'entering' | 'exploring' | 'exiting'
 export type Orbit = { yaw: number; pitch: number; distance: number }
@@ -15,9 +16,18 @@ export function rotateOrbit(orbit: Orbit, yaw: number, pitch: number) {
 export function zoomOrbit(orbit: Orbit, delta: number, planet: Planet = mercury) {
   orbit.distance = Math.max(planet.orbit.min, Math.min(planet.orbit.max, orbit.distance * Math.exp(delta * 0.0015)))
 }
-export function hotspotOrbit(planet: Planet, hotspot: Hotspot): Orbit {
-  const view = hotspot.view ?? hotspot.anchor
-  return { yaw: view.yaw, pitch: Math.max(-1.1, Math.min(1.1, view.pitch)),
+const spinRotation = new Quaternion()
+const spunView = new Vector3()
+const origin = new Vector3()
+// spinTime: the planet's frozen spin, so the camera faces the hotspot where it now is.
+export function hotspotOrbit(planet: Planet, hotspot: Hotspot, spinTime = 0): Orbit {
+  let { yaw, pitch } = hotspot.view ?? hotspot.anchor
+  if (spinTime) {
+    orbitPosition({ yaw, pitch, distance: 1 }, origin, spunView).applyQuaternion(worldSpin(planet, spinTime, spinRotation))
+    yaw = Math.atan2(spunView.x, spunView.z)
+    pitch = Math.asin(Math.max(-1, Math.min(1, spunView.y)))
+  }
+  return { yaw, pitch: Math.max(-1.1, Math.min(1.1, pitch)),
     distance: Math.max(planet.orbit.min, Math.min(planet.orbit.max, hotspot.focusDistance)) }
 }
 export function sampleFocusOrbit(from: Orbit, to: Orbit, t: number, out: Orbit) {
@@ -62,6 +72,8 @@ export function createExploreState() {
     selectedHotspot: null as string | null,
     axisVisible: false,
     replayCount: 0,
+    // Planet spin clock: advances only while travelling with full motion.
+    spin: { time: 0 },
     returnFocus: null as HTMLElement | null,
     navigation: null as null | {
       planet: Planet; pixel: number; progress: number; replay: boolean; focus: HTMLElement | null;

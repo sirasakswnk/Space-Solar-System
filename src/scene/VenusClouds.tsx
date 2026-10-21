@@ -2,10 +2,11 @@ import { useEffect, useMemo, useRef } from 'react'
 import type { RefObject } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { AdditiveBlending, BackSide, Color, RepeatWrapping, SphereGeometry, SRGBColorSpace, TextureLoader } from 'three'
-import type { MeshStandardMaterial, ShaderMaterial } from 'three'
+import type { Mesh, MeshStandardMaterial, ShaderMaterial } from 'three'
 import type { Planet } from '../data/planets'
 import type { ExploreState } from '../journey/explore'
 import { planetVisibility } from '../journey/planetVisibility'
+import { meshSpin } from '../journey/spin'
 import type { AssetStatus } from '../journey/assetStatus'
 import { useAssetAttempt } from '../journey/useAssetStatus'
 
@@ -39,6 +40,7 @@ export default function VenusClouds({ planet, material, model, progress, assets 
   const { gl, scene } = useThree()
   const attempt = useAssetAttempt(assets, 'venus')
   const rim = useRef<ShaderMaterial>(null)
+  const shell = useRef<Mesh>(null)
   const geometry = useMemo(() => new SphereGeometry(planet.scene.radius, 48, 32), [planet.scene.radius])
   const status = useMemo(() => ({ texture: 'loading', width: 0, height: 0, cloudOpacity: 0, rimStrength: 0.18, rimVisibility: 0 }), [])
   const uniforms = useMemo(() => ({ tint: { value: new Color('#efd3a2') },
@@ -71,6 +73,7 @@ export default function VenusClouds({ planet, material, model, progress, assets 
   }, [gl, scene, material, planet.scene.color, status, assets, attempt])
   useEffect(() => () => geometry.dispose(), [geometry])
   useFrame(() => {
+    if (shell.current) meshSpin(planet, model.spin.time, shell.current.quaternion)
     const appliedUniforms = rim.current?.uniforms
     if (!appliedUniforms) return
     // Write to the rendered material: the reconciler may copy the initial uniforms.
@@ -84,7 +87,7 @@ export default function VenusClouds({ planet, material, model, progress, assets 
     status.rimVisibility = appliedUniforms.visibility.value
   }, -1)
   return <group position={planet.scene.center}>
-    <mesh geometry={geometry} name="venus-cloud-shell">
+    <mesh ref={shell} geometry={geometry} name="venus-cloud-shell">
       <meshStandardMaterial ref={material} color={planet.scene.color} emissive="#4786a8"
         emissiveIntensity={0} roughness={1} transparent opacity={0} />
     </mesh>

@@ -1,0 +1,23 @@
+{
+ "earthCloudsDrift": 0.0053,
+ "jupiterSpin": {
+  "seconds": 16.16,
+  "meshTurned": 1.616,
+  "expected": 1.616,
+  "shipCameraStill": true
+ },
+ "explore": {
+  "spinFrozen": true,
+  "cameraFacesSpot": 1,
+  "outlineVisible": true,
+  "marker": true
+ },
+ "uranus": {
+  "spin": 29.43,
+  "guideUpright": true,
+  "meshAxisIsTilted": true
+ },
+ "reducedMotionStops": true,
+ "errors": [],
+ "failedRequests": []
+}

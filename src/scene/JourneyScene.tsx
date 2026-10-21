@@ -77,6 +77,9 @@ export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
   useFrame(({ camera, scene }, delta) => {
     const state = progress.current
     motion.fade = fadeAfter(motion.fade, delta)
+    // Planets keep spinning while the journey is paused, but not during exploration
+    // (hotspots stay put) or with reduced motion (which also pauses the spin).
+    if (explore.phase === 'travel' && !motion.reduced) explore.spin.time += Math.min(delta, 0.05)
     // Reduced motion: a long jump (menu, Home/End) cuts and fades in instead of flying.
     if (explore.phase === 'travel' && shouldCut(motion.reduced, state.current, state.target)) {
       state.current = state.target
@@ -178,7 +181,7 @@ export default function JourneyScene({ progress, meterRef, percentRef, labelRef,
       <directionalLight position={[-10, 4, -30]} intensity={1.4} color="#6b9adf" />
       <Ship shipRef={ship} progress={launch} />
       <LaunchScene progress={launch} />
-      <EarthScene progress={launch} assets={assets} />
+      <EarthScene progress={launch} assets={assets} spin={explore.spin} />
       {journeyPlanets.map(planet => <PlanetScene key={planet.id} planet={planet} model={explore}
         progress={progress} buttons={hotspotButtons} hoverRef={hoverRef} open={openExplore} assets={assets} />)}
       <NeptuneRoute model={explore} />

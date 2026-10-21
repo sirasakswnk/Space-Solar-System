@@ -2,12 +2,13 @@ import { useRef } from 'react'
 import type { RefObject } from 'react'
 import { useFrame } from '@react-three/fiber'
 import type { ThreeEvent } from '@react-three/fiber'
-import type { Group, MeshStandardMaterial } from 'three'
+import type { Group, Mesh, MeshStandardMaterial } from 'three'
 import type { Planet } from '../data/planets'
 import type { ExploreState } from '../journey/explore'
 import { getExplorePlanet } from '../journey/path'
 import { planetVisibility } from '../journey/planetVisibility'
 import PlanetHotspots from './PlanetHotspots'
+import { meshSpin } from '../journey/spin'
 import MercurySurface from './MercurySurface'
 import VenusClouds from './VenusClouds'
 import MarsSurface from './MarsSurface'
@@ -24,6 +25,7 @@ export default function PlanetScene({ planet, model, progress, buttons, hoverRef
 }) {
   const group = useRef<Group>(null)
   const material = useRef<MeshStandardMaterial>(null)
+  const body = useRef<Mesh>(null)
   const available = () => model.phase === 'travel' && getExplorePlanet(progress.current.current)?.id === planet.id
   const hover = (event: ThreeEvent<PointerEvent>) => {
     if (!available()) return
@@ -36,6 +38,7 @@ export default function PlanetScene({ planet, model, progress, buttons, hoverRef
     document.body.style.cursor = 'pointer'
   }
   useFrame(() => {
+    if (body.current) meshSpin(planet, model.spin.time, body.current.quaternion)
     const opacity = planetVisibility(planet.id, progress.current.current, model.phase === 'travel' ? null : model.planet.id)
     if (group.current) group.current.visible = opacity > 0
     if (material.current) {
@@ -52,7 +55,7 @@ export default function PlanetScene({ planet, model, progress, buttons, hoverRef
         document.body.style.cursor = ''
       }}>
     {planet.id === 'venus' ? <VenusClouds planet={planet} material={material} model={model} progress={progress} assets={assets} />
-      : <mesh position={planet.scene.center} rotation={[0, 0, planet.axisTilt ?? 0]}
+      : <mesh ref={body} position={planet.scene.center}
         name={['jupiter', 'saturn', 'uranus', 'neptune'].includes(planet.id) ? `${planet.id}-cloud-shell`
         : ['mercury', 'mars'].includes(planet.id) ? `${planet.id}-surface` : undefined}>
       <sphereGeometry args={[planet.scene.radius, ['mars', 'jupiter', 'saturn', 'uranus', 'neptune'].includes(planet.id) ? 64 : 40,
